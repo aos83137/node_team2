@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    table 
+        tr
+            td(colspan="3")
+                input(type="button" value="작성")
+        tr 
+            td Q
+            td(style="width: 300px; text-align:center;") 제목
+            td
+                form(action="")
+                    input(type="button" value="수정") 
+                    input(type="button" value="삭제") 
+                    input(type="button" value="답글") 
+    tbody

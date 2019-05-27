@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    table
+    table#logintable
         th  Login
         tr
             td 아이디
@@ -13,11 +13,6 @@ block content
                 input#put_passwd(type="text")
         tr
             td(colspan="3" style="text-align: center")
-                input#sign_in(type="submit" value="로그인")
-        tr
-            td
-            
-            td(colspan="2" style="text-align: right;") 
-                input(type="button" value="찾기")
-            
-                input#signUp_button(type="button" value="회원가입" )     
+    div#signIn_button
+        input#log_in(type="submit" value="로그인")
+        input#find_id(type="button" value="찾기")

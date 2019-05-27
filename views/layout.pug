@@ -4,9 +4,22 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    #header
-
-    #body
-        block content    
-    #footer
-      #foot_text CopyRight @ Team_2(2019)
+    header
+      p We are studying for job in Japan
+      div#for-log
+        a(href="/registor")#register 회원가입
+        a(href="/signIn")#login 로그인
+        a(href="http://www.naver.com")#logout 로그아웃
+      hr
+    nav
+      div#for-nav
+        a(href="")#introduce-member 현지학기제
+        a(href="")#introduce-member 조원소개
+        a(href="/QnA")#introduce-member QnA
+      hr
+    main
+      block content
+    footer
+      hr
+      p Copyright@team2
+      p 정현재  조영준  전용석  서영훈  정인식

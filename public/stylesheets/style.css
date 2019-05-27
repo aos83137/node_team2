@@ -1,8 +1,106 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+body{
+  margin : 0px;
+  background-color : #E6E6E6;
 }
 
-a {
-  color: #00B7FF;
+header > p{
+  text-align : center;
+  line-height : 50px;
+  font-size : 40px;
+  font-family : cursive;
+}
+
+#for-log > a{
+  font-family : sans-serif;
+  float : right;
+  margin-right : 50px;
+  margin-bottom : 10px;
+}
+
+#for-log > a:link, #for-log > a:visited{
+  text-decoration: none;
+  color : black;
+}
+
+#for-log > a:hover{
+  color : gray;
+}
+
+#for-log > #logout{
+  display:none;
+}
+
+header > hr{
+  clear : both;
+  margin-left : 50px;
+  margin-right : 50px;
+  border : 0;
+  border-bottom: solid 5px;
+  border-radius: 30px;
+}
+
+#for-nav > a{
+  font-family : sans-serif;
+  margin-left : 50px;
+}
+
+#for-nav > a:link, #for-nav > a:visited{
+  text-decoration: none;
+  color : black;
+}
+
+#for-nav > a:hover{
+  color : gray;
+}
+
+nav > hr{
+  margin-left : 50px;
+  margin-right : 50px;
+  border : 0;
+  border-bottom: solid 5px;
+  border-radius: 30px;
+}
+
+main{
+  min-height : 400px;
+}
+
+footer{
+  height : 100px;
+  color : gray;
+}
+
+footer > hr{
+  margin-left : 50px;
+  margin-right : 50px;
+  border : 0;
+  border-top: solid 5px;
+  border-radius: 30px;
+}
+
+footer > p{
+  font-family : sans-serif;
+  float : right;
+  margin-right : 50px;
+  font-size : 15px;
+}
+
+#registortable{
+  margin-left : 40%;
+  height : 500px;
+}
+
+#logintable{
+  margin-top : 50px;
+  margin-left : 40%;
+  height : 250px;
+}
+
+#signIn_button {
+  text-align : center;
+}
+
+#signIn_button > #log_in {
+  margin-right : 20px;
 }

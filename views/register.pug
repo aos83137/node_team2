@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    #register_wrap_box
+        a(href="/")
+            h1 TEAM 2
+        form#register_form(action='submit')
+            #register_id
+                h3 아이디
+                input#enter_id(type="text" name="id")
+            #register_password
+                h3 비밀번호
+                input#enter_password(type="password" name="password")
+            #register_password_confirm
+                h3 비밀번호 확인
+                input#enter_password_confirm(type="password" name="password_confirm")
+            #register_nick
+                h3 닉네임
+                input#enter_nick(type="text" name="nick")
+            #submission
+                input#sub_button(type="submit" value="가입하기")

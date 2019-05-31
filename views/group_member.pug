@@ -1,163 +1,18 @@
 extends layout
 
 block content
-    body
-        .profile
-            #half1
-                img#image1(src="/images/서영훈.jpg", width="250", height="200" onclick="for_image1()")
-                img#image2(src="/images/정현재.jpg", width="250", height="200" onclick="for_image2()")                       
-            #half2
-                #half2_content
-            #half3
-                img#image3(src="/images/전용석.jpg", width="250", height="200" onclick="for_image3()")
-                img#image4(src="/images/정인식.jpg", width="250", height="200" onclick="for_image4()") 
-                img#image5(src="/images/image5.png", width="250", height="200" onclick="for_image5()")
-
-    script.
-        var control1 = 0;
-        var control2 = 0;
-        var control3 = 0;
-        var control4 = 0;
-        var control5 = 0;
-
-        function for_image1(){
-            if(control1 == 0){
-                if(control2 == 1 || control3 == 1 || control4 == 1 || control5 == 1){
-                    half2_content.innerHTML = "이름 서영훈. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 담배피기";
-                    control1 += 1;
-                    control2 = 0;
-                    control3 = 0;
-                    control4 = 0;
-                    control5 = 0;
-                }else{
-                    half2.style.height = "200px";
-                    half2.style.padding = "20px";
-                    half2_content.innerHTML = "이름 서영훈. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 담배피기";
-                    control1 += 1;
-                }
-            }else if(control1 == 1){
-                half2_content.innerHTML = "";
-                half2.style.height = "0px";
-                half2.style.padding = "0px";
-                control1 -= 1;
-            }
-        }
-        function for_image2(){
-            if(control2 == 0){
-                if(control1 == 1 || control3 == 1 || control4 == 1 || control5 == 1){
-                    half2_content.innerHTML = "이름 정현재. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 2000"+ "<br>"
-                                                    + "방어력 : 2000"+ "<br>"
-                                                    + "특기 : 모든거";
-                    control2 += 1;
-                    control1 = 0;
-                    control3 = 0;
-                    control4 = 0;
-                    control5 = 0;
-                }else{
-                    half2.style.height = "200px";
-                    half2.style.padding = "20px";
-                    half2_content.innerHTML = "이름 정현재. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 2000"+ "<br>"
-                                                    + "방어력 : 2000"+ "<br>"
-                                                    + "특기 : 모든거";
-                    control2 += 1;
-                }
-            }else if(control2 == 1){
-                half2.style.height = "0px";
-                half2.style.padding = "0px";
-                half2_content.innerHTML = ""
-                control2 -= 1;
-            }
-        }
-        function for_image3(){
-            if(control3 == 0){
-                if(control1 == 1 || control2 == 1 || control4 == 1 || control5 == 1){
-                    half2_content.innerHTML = "이름 전용석. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 달리기";
-                    control1 += 1;
-                    control3+= 1;
-                    control1 = 0;
-                    control2 = 0;
-                    control4 = 0;
-                    control5 = 0;
-                }else{
-                    half2.style.height = "200px";
-                    half2.style.padding = "20px";
-                    half2_content.innerHTML = "이름 전용석. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 달리기";
-                    control3 += 1;
-                }
-            }else if(control3 == 1){
-                half2.style.height = "0px";
-                half2.style.padding = "0px";
-                half2_content.innerHTML = ""
-                control3 -= 1;
-            }
-        }
-        function for_image4(){
-            if(control4 == 0){
-                if(control1 == 1 || control2 == 1 || control3 == 1 || control5 == 1){
-                    half2_content.innerHTML = "이름 정인식. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 예비군";
-                    control4 += 1;
-                    control1 = 0;
-                    control2 = 0;
-                    control3 = 0;
-                    control5 = 0;
-                }else{
-                    half2.style.height = "200px";
-                    half2.style.padding = "20px";
-                    half2_content.innerHTML = "이름 정인식. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 예비군";
-                    control4 += 1;
-                }
-            }else if(control4 == 1){
-                half2.style.height = "0px";
-                half2.style.padding = "0px";
-                half2_content.innerHTML = ""
-                control4 -= 1;
-            }
-        }
-        function for_image5(){
-            if(control5 == 0){
-                if(control1 == 1 || control2 == 1 || control3 == 1 || control4 == 1){
-                    half2_content.innerHTML = "이름 조용준. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 일드보기";
-                    control5 += 1;
-                    control1 = 0;
-                    control2 = 0;
-                    control3 = 0;
-                    control4 = 0;
-                }else{
-                    half2.style.height = "200px";
-                    half2.style.padding = "20px";
-                    half2_content.innerHTML = "이름 조용준. 전설의 포켓몬" + "<br>"
-                                                    + "공격력 : 100"+ "<br>"
-                                                    + "방어력 : 100"+ "<br>"
-                                                    + "특기 : 일드보기";
-                    control5 += 1;
-                }
-            }else if(control5 == 1){
-                half2.style.height = "0px";
-                half2.style.padding = "0px";
-                half2_content.innerHTML = ""
-                control5 -= 1;
-            }
-        }
+    table#logintable
+        th  Login
+        tr
+            td 아이디
+            td(colspan="2") 
+                input#put_id(type="text")
+        tr
+            td 비밀번호 
+            td(colspan="2") 
+                input#put_passwd(type="text")
+        tr
+            td(colspan="3" style="text-align: center")
+    div#login_button
+        input#log_in(type="submit" value="로그인")
+        input#find_id(type="button" value="찾기")

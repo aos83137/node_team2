@@ -1,18 +1,25 @@
 extends layout
 
 block content
-    table#logintable
-        th  Login
-        tr
-            td 아이디
-            td(colspan="2") 
-                input#put_id(type="text")
-        tr
-            td 비밀번호 
-            td(colspan="2") 
-                input#put_passwd(type="text")
-        tr
-            td(colspan="3" style="text-align: center")
-    div#login_button
-        input#log_in(type="submit" value="로그인")
-        input#find_id(type="button" value="찾기")
+    div#wrap_local_semester
+        div#lcl_intro
+            h2 소개
+            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione sunt repudiandae iure aspernatur modi, ducimus, quia impedit nemo odio consequuntur a illo. A accusamus est perspiciatis ratione voluptatum adipisci.
+            p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique inventore ab dolores aliquam quidem porro excepturi eligendi laudantium, voluptates pariatur animi nam repellendus iste veritatis est atque asperiores at odio?
+            p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas enim perspiciatis harum? Soluta earum repellat obcaecati totam dolores sunt nesciunt saepe, odit eligendi voluptatum quod quibusdam natus reiciendis, doloribus nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi sit soluta natus nemo, numquam hic iste explicabo, id, at voluptate nam eius quia harum a quod. Laborum sapiente omnis voluptas. 
+        div#lcl_schedule
+            h2 일정
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae at neque omnis iure, id illum, reprehenderit enim nulla necessitatibus hic, amet esse molestias cupiditate ab? Laborum quisquam facere fugiat officiis!
+            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eius totam veritatis, cumque ex adipisci iure officia distinctio facilis? Sint doloremque nemo nobis voluptatum totam ex, harum dicta accusamus reprehenderit!
+            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora animi, quo hic eum explicabo error. Nisi, voluptate nam eius, quam dignissimos neque impedit perspiciatis, quas repellendus magnam mollitia asperiores.
+        form#wrap_gallery(action='/img' method='post' enctype='multipart/form-data')
+            h2 갤러리
+            div 
+                input#img(type='file' name='userfile')
+                input(type='submit')
+    .aaaa    
+      for arr in aaaa
+          .main-img
+           img(src=arr.img) 
+
+    

@@ -1,64 +1,18 @@
 extends layout
 
 block content
-    #register_wrap_box
-        a(href="/")
-            h1 Login
-        form#login-form(action='submit')
-            #id_box(onclick="")
-                #id_text 
-                    label(for='email') 아이디
-                #id_input 
-                    input#email_box(type="email" name='email', required autofocus  onkeydown="JavaScript:Enter_Check();")     
-            #passwd_box
-                #passwd_text 
-                    label(for='password') 비밀번호
-                #passwd_input 
-                    input(type="password" name='password' required)
-                #passwd_submit 
-                    button#login.btn(type='submit') 로그인
-                
-
-    style.
-        #login-form{
-            max-width : 40%;
-            margin : 24px auto ;
-        }
-        #login-form input{
-            width: 100%;
-            height: 30px;
-        }
-        #passwd_submit {
-            text-align : center;
-            padding : 10px;
-        }
-        #passwd_submit > button{
-            border : solid 2px gray;
-            width : 250px;
-            height : 40px;
-        }
-        #passwd_box{
-            display:none;
-        }
-
-    script. 
-        function Enter_Check() {
-            if (window.event.keyCode == 13) {
-                // 엔터키가 눌렸을 때 실행할 내용
-                login();
-            }
-        }
-
-        function login(){
-            var check = document.getElementById("email_box").value;
-            var con = document.getElementById("passwd_box");
-            var flag = false;
-
-            if(check.indexOf('@')!=-1){
-                flag = true;
-            }
-            if(flag)
-                con.style.display = 'block';
-            //- }
-        }
-
+    table#logintable
+        th  Login
+        tr
+            td 아이디
+            td(colspan="2") 
+                input#put_id(type="text")
+        tr
+            td 비밀번호 
+            td(colspan="2") 
+                input#put_passwd(type="text")
+        tr
+            td(colspan="3" style="text-align: center")
+    div#login_button
+        input#log_in(type="submit" value="로그인")
+        input#find_id(type="button" value="찾기")

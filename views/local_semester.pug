@@ -7,14 +7,21 @@ block content
             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione sunt repudiandae iure aspernatur modi, ducimus, quia impedit nemo odio consequuntur a illo. A accusamus est perspiciatis ratione voluptatum adipisci.
             p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique inventore ab dolores aliquam quidem porro excepturi eligendi laudantium, voluptates pariatur animi nam repellendus iste veritatis est atque asperiores at odio?
             p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas enim perspiciatis harum? Soluta earum repellat obcaecati totam dolores sunt nesciunt saepe, odit eligendi voluptatum quod quibusdam natus reiciendis, doloribus nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi sit soluta natus nemo, numquam hic iste explicabo, id, at voluptate nam eius quia harum a quod. Laborum sapiente omnis voluptas. 
+
             hr
         div#lcl_schedule
             h2 일정
             p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae at neque omnis iure, id illum, reprehenderit enim nulla necessitatibus hic, amet esse molestias cupiditate ab? Laborum quisquam facere fugiat officiis!
             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eius totam veritatis, cumque ex adipisci iure officia distinctio facilis? Sint doloremque nemo nobis voluptatum totam ex, harum dicta accusamus reprehenderit!
             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora animi, quo hic eum explicabo error. Nisi, voluptate nam eius, quam dignissimos neque impedit perspiciatis, quas repellendus magnam mollitia asperiores.
-            hr
+
         form#wrap_gallery(action='/img' method='post' enctype='multipart/form-data')
             h2 갤러리
-            
-            
+            div 
+                input#img(type='file' name='userfile')
+                input(type='submit')
+    .aaaa    
+      for arr in aaaa
+          .main-img
+           img(src=arr.img) 
+

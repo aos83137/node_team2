@@ -63,6 +63,8 @@ nav > hr{
 }
 
 main{
+  margin-top : 30px;
+  margin-bottom : 30px;
   min-height : 400px;
 }
 
@@ -211,4 +213,28 @@ img {
 #half2_content {
   padding-left: 50px;
   padding-right : 50px; 
+}
+
+#wrap_local_semester{
+  margin: auto;
+  margin-top : 50px;
+  width : 1080px;
+}
+
+#lcl_intro > hr{
+  width : 900px;;
+  margin : auto;
+  margin-top : 50px;
+  margin-bottom : 50px;
+  border: solid 2px;
+  border-radius: 30px;
+}
+
+#lcl_schedule > hr{
+  width : 900px;;
+  margin : auto;
+  margin-top : 50px;
+  margin-bottom : 50px;
+  border: solid 2px;
+  border-radius: 30px;
 }

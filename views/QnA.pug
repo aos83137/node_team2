@@ -1,7 +1,48 @@
 extends layout
 
 block content
-    table#QnAtable
+    .container(style="width: 1080px; margin: 0 auto;")
+        #wrap_QnA(style="width: 800px; margin: 0 auto;  border: 1px solid black;")
+            form#QnA_form(action="")
+                div
+                    input#title(type="text" placeholder="제목")
+                div
+                    input#content(type="text" placeholder=" ")
+                div
+                    button(type="submit") 질문추가
+
+            table#QnAtable
+                thead
+                    tr
+                        th(style="width:30px; text-align:center;") 번호
+                        //- th= qna.id
+                        th(style="width:500px; text-align:center;") 제목
+                        //- th= qna.name
+                        th(style="width:100px; text-align:center;") 글쓴이
+                        th(style="width:70px; text-align:center;") 날짜
+                tbody
+                    tr
+                        td#Q1num 1
+                        td#Q1title 이것을 누르면 1번 QnA의 내용이 나오는가?
+                        td#Q1writer 사람1
+                        td#Q1date 2019/05/30
+                    tr
+                        td#Q2num 2
+                        td#Q2title 이것을 누르면 2번 QnA의 내용과 수정, 삭제, 답글이 나오는가?
+                        td#Q2writer 사람2
+                        td#Q2date 2019/05/30
+                    tr
+                        td
+                        td(colspan="2") 
+                            span
+                                div 이것은 2번이 클릭되면 표시되도록 해야합니다. &nbsp;또한 2번 제목을 클릭하였을 때 표시되도록 해야합니다.
+                            form(action="")
+                                input(type="button" value="수정") 
+                                input#delete(type="button" value="삭제") 
+                                input(type="button" value="답글") 
+                        td
+            
+    //-table#QnAtable
         tr
             td(colspan="3")
                 input(type="button" value="작성")
@@ -13,4 +54,26 @@ block content
                     input(type="button" value="수정") 
                     input(type="button" value="삭제") 
                     input(type="button" value="답글") 
-    tbody
+    style.
+        .container {
+            width: 1080px; margin: 0 auto;
+        }
+
+        #wrap_QnA {
+            width: 800px;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+
+        #QnA_form input {
+            width: 99%;
+            margin: 0 auto;
+        }
+
+        #QnA_form div > #title { height: 40px;}
+
+        #QnA_form div > #content { height: 120px;}
+
+        th, td {
+            border: 1px solid black;
+        }

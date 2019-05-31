@@ -1,200 +1,202 @@
-
-body{
-  margin : 0px;
-  background-color : #E6E6E6;
+body {
+  margin: 0px;
+  background-color: #E6E6E6;
 }
 
-header > p{
-  text-align : center;
-  line-height : 50px;
-  font-size : 40px;
-  font-family : cursive;
+header>p {
+  text-align: center;
+  line-height: 50px;
+  font-size: 40px;
+  font-family: cursive;
 }
 
-#for-log > a{
-  font-family : sans-serif;
-  float : right;
-  margin-right : 50px;
-  margin-bottom : 10px;
+#for-log>a {
+  font-family: sans-serif;
+  float: right;
+  margin-right: 50px;
+  margin-bottom: 10px;
 }
 
-#for-log > a:link, #for-log > a:visited{
+#for-log>a:link,
+#for-log>a:visited {
   text-decoration: none;
-  color : black;
+  color: black;
 }
 
-#for-log > a:hover{
-  color : gray;
+#for-log>a:hover {
+  color: gray;
 }
 
-#for-log > #logout{
-  display:none;
+#for-log>#logout {
+  display: none;
 }
 
-header > hr{
-  clear : both;
-  margin-left : 50px;
-  margin-right : 50px;
-  border : 0;
+header>hr {
+  clear: both;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 0;
   border-bottom: solid 5px;
   border-radius: 30px;
 }
 
-#for-nav > a{
-  font-family : sans-serif;
-  margin-left : 50px;
+#for-nav>a {
+  font-family: sans-serif;
+  margin-left: 50px;
 }
 
-#for-nav > a:link, #for-nav > a:visited{
+#for-nav>a:link,
+#for-nav>a:visited {
   text-decoration: none;
-  color : black;
+  color: black;
 }
 
-#for-nav > a:hover{
-  color : gray;
+#for-nav>a:hover {
+  color: gray;
 }
 
-nav > hr{
-  margin-left : 50px;
-  margin-right : 50px;
-  border : 0;
+nav>hr {
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 0;
   border-bottom: solid 5px;
   border-radius: 30px;
 }
 
-main{
-  margin-top : 30px;
-  margin-bottom : 30px;
-  min-height : 400px;
+main {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 400px;
 }
 
-footer{
-  height : 100px;
-  color : gray;
+footer {
+  height: 100px;
+  color: gray;
 }
 
-footer > hr{
-  margin-left : 50px;
-  margin-right : 50px;
-  border : 0;
+footer>hr {
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 0;
   border-top: solid 5px;
   border-radius: 30px;
 }
 
-footer > p{
-  font-family : sans-serif;
-  float : right;
-  margin-right : 50px;
-  font-size : 15px;
+footer>p {
+  font-family: sans-serif;
+  float: right;
+  margin-right: 50px;
+  font-size: 15px;
 }
 
-#logintable{
-  margin-top : 50px;
-  margin-left : 40%;
-  height : 250px;
+#logintable {
+  margin-top: 50px;
+  margin-left: 40%;
+  height: 250px;
 }
 
 #login_button {
-  text-align : center;
+  text-align: center;
 }
 
-#login_button > #log_in {
-  margin-right : 20px;
+#login_button>#log_in {
+  margin-right: 20px;
 }
 
-#register_wrap_box{
-  width : 1080px;
-  margin : auto;
-  border : solid 2px;
+#register_wrap_box {
+  width: 1080px;
+  margin: auto;
+  border: solid 2px;
 }
 
-#register_wrap_box > a{
+#register_wrap_box>a {
   text-decoration: none;
-  color : black;
+  color: black;
 }
 
-#register_wrap_box  h1{
-  text-align : center;
-  margin-bottom : 40px;
+#register_wrap_box h1 {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-#register_form{
-  width : 800px;
-  margin : auto;
+#register_form {
+  width: 800px;
+  margin: auto;
 }
 
-#register_id{
-  margin-left : 35%;
+#register_id {
+  margin-left: 35%;
 }
 
-#register_id > #enter_id{
-  width : 250px;
-  height : 30px;
+#register_id>#enter_id {
+  width: 250px;
+  height: 30px;
 }
 
-#register_password{
-  margin-left : 35%;
+#register_password {
+  margin-left: 35%;
 }
 
-#register_password > #enter_password{
-  width : 250px;
-  height : 30px;
+#register_password>#enter_password {
+  width: 250px;
+  height: 30px;
 }
 
-#register_password_confirm{
-  margin-left : 35%;
+#register_password_confirm {
+  margin-left: 35%;
 }
 
-#register_password_confirm > #enter_password_confirm{
-  width : 250px;
-  height : 30px;
+#register_password_confirm>#enter_password_confirm {
+  width: 250px;
+  height: 30px;
 }
 
-#register_nick{
-  margin-left : 35%;
+#register_nick {
+  margin-left: 35%;
 }
 
-#register_nick > #enter_nick{
-  width : 250px;
-  height : 30px;
+#register_nick>#enter_nick {
+  width: 250px;
+  height: 30px;
 }
 
-#submission{
-  margin-top : 50px;
-  margin-left : 35%;
-  margin-bottom : 50px;
-}
-#submission > #sub_button{
-  border : solid 2px gray;
-  width : 250px;
-  height : 40px;
+#submission {
+  margin-top: 50px;
+  margin-left: 35%;
+  margin-bottom: 50px;
 }
 
-#submission > input:hover{
-  color : grey;
+#submission>#sub_button {
+  border: solid 2px gray;
+  width: 250px;
+  height: 40px;
+}
+
+#submission>input:hover {
+  color: grey;
 }
 
 
-#logintable{
-  margin-top : 50px;
-  margin-left : 40%;
-  height : 250px;
+#logintable {
+  margin-top: 50px;
+  margin-left: 40%;
+  height: 250px;
 }
 
 #login_button {
-  text-align : center;
+  text-align: center;
 }
 
-#login_button > #log_in {
-  margin-right : 20px;
+#login_button>#log_in {
+  margin-right: 20px;
 }
 
-#wrap_local_semester{
+#wrap_local_semester {
   margin: auto;
   max-width: 1080px;
 }
 
-#lcl_intro{
+#lcl_intro {
   background-color: white;
 }
 
@@ -202,7 +204,7 @@ footer > p{
   background-color: white;
 }
 
-#button{
+#button {
   display: inline-block;
   padding: 0 5px;
   text-decoration: none;
@@ -218,46 +220,81 @@ footer > p{
 }
 
 
-#img-preview { max-width: 100%; }
+#img-preview {
+  max-width: 100%;
+}
 
-.aaaa{
-  margin:auto;
+.aaaa {
+  margin: auto;
   max-width: 1080px;
 }
 
-.arr{
+.arr {
   display: inline;
 }
 
-.main-img{
+.main-img {
   display: inline;
 }
 
 #half2_content {
   padding-left: 50px;
-  padding-right : 50px; 
+  padding-right: 50px;
 }
 
-#wrap_local_semester{
+#wrap_local_semester {
   margin: auto;
-  margin-top : 50px;
-  width : 1080px;
+  margin-top: 50px;
+  width: 1080px;
 }
 
-#lcl_intro > hr{
-  width : 900px;;
-  margin : auto;
-  margin-top : 50px;
-  margin-bottom : 50px;
+#lcl_intro>hr {
+  width: 900px;
+  ;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
   border: solid 2px;
   border-radius: 30px;
 }
 
-#lcl_schedule > hr{
-  width : 900px;;
-  margin : auto;
-  margin-top : 50px;
-  margin-bottom : 50px;
+#lcl_schedule>hr {
+  width: 900px;
+  ;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
   border: solid 2px;
   border-radius: 30px;
+}
+
+#half1 {
+  margin-top: 50px;
+}
+
+#half2 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+  border: solid 2px;
+  border-radius: 30px;
+}
+
+#half3 {
+  margin-bottom: 50px;
+}
+
+.profile {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.profile>img {
+  transition: all ease 1s;
+}
+
+.profile img:hover {
+  transform: scale(1.1);
 }

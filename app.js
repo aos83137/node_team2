@@ -1,26 +1,60 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const multer = require('multer');
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+require('dotenv').config();
+const fs = require('fs');
 
-var local_semester = require('./routes/local_semester');
-var login = require('./routes/login');
-var register = require('./routes/register');
-var QnA = require('./routes/QnA');
-var group_member = require('./routes/group_member');
+const local_semester = require('./routes/local_semester');
+const login = require('./routes/login');
+const register = require('./routes/register');
+const QnA = require('./routes/QnA');
+const group_member = require('./routes/group_member');
+const passportConfig = require('./passport');
 
-var app = express();
+const { sequelize } = require('./models');
+
+const app = express();
+sequelize.sync(); //연동
+passportConfig(passport);
+
+
+fs.readdir('uploads', (error) => {
+  if (error) {
+    console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+    fs.mkdirSync('uploads');
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img',express.static(path.join(__dirname,'uploads')));
+// 폴더를 /img 경로라는 가상경로로 접근
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  resave:false,
+  saveUninitialized:false,
+  secret: process.env.COOKIE_SECRET,
+  cookie:{
+    httpOnly:true,
+    secure:false,
+  },
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', local_semester);
 app.use('/login', login);

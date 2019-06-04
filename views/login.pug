@@ -10,6 +10,8 @@ block content
                     label(for='u_id') 아이디
                 #id_input 
                     input#email_box(type="text" name='u_id', required autofocus  onkeydown="JavaScript:Enter_Check();")     
+                if loginError
+                    .error-message= loginError   
             #passwd_box
                 #passwd_text 
                     label(for='password') 비밀번호
@@ -17,6 +19,7 @@ block content
                     input(type="password" name='password' required)
                 #passwd_submit 
                     button#login.btn(type='submit') 로그인
+
                 
 
     style.

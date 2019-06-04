@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('group_member');
+  res.render('group_member',{
+    user:req.user,  
+
+  });
 });
 
 module.exports = router;

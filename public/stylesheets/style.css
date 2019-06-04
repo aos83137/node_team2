@@ -28,7 +28,7 @@ header>p {
 }
 
 #for-log>#logout {
-  display: none;
+  display: span;
 }
 
 header>hr {
@@ -291,8 +291,8 @@ footer>p {
   padding-bottom: 20px;
 }
 
-.profile>img {
-  transition: all ease 1s;
+.profile img {
+  transition: all ease 0.5s;
 }
 
 .profile img:hover {

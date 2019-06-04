@@ -1,25 +1,32 @@
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
-const {isNotLoggedIn, isLoggedIn} = require('./middlewares');
+const {
+  isNotLoggedIn,
+  isLoggedIn
+} = require('./middlewares');
 // const { User } = require('../models');
 
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login');
+router.get('/', isNotLoggedIn,function (req, res, next) {
+  res.render('login',{
+    user: req.user,
+    loginError: req.flash('loginError'),
+  });
 });
 
-router.post('/login', isNotLoggedIn, (req, res, next) => {
+router.post('/', isNotLoggedIn, (req, res, next) => {
   passport.authenticate('local', (authError, user, info) => {
     if (authError) {
       console.error(authError);
       return next(authError);
     }
     if (!user) {
+      console.log('check');
       req.flash('loginError', info.message);
-      return res.redirect('/');
+      return res.redirect('/login');
     }
     return req.login(user, (loginError) => {
       if (loginError) {

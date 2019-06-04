@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
-const {Post} = require('../models');
+const {Post, User} = require('../models');
 var multer = require('multer');
 var _storage = multer.diskStorage({
   destination : function(req,file,cb){
@@ -25,7 +25,9 @@ router.get('/', function(req, res, next) {
    .then((posts)=>{
     res.render('local_semester', { //render 방식으로 pug에 객체 보냄
       title : 'team2',  //db이름
-      aaaa : posts,    
+      aaaa : posts, 
+      user:req.user,  
+      loginError: req.flash('loginError'), 
        //post 테이블의 내용이 posts인듯 aaaa라는 키값으로 보내서 pug에서 쓸거
     });
    })

@@ -4,12 +4,12 @@ block content
     #register_wrap_box
         a(href="/")
             h1 Login
-        form#login-form(action='/login' method='post')
+        form#login-form(action='submit')
             #id_box(onclick="")
                 #id_text 
-                    label(for='u_id') 아이디
+                    label(for='email') 아이디
                 #id_input 
-                    input#email_box(type="text" name='u_id', required autofocus  onkeydown="JavaScript:Enter_Check();")     
+                    input#email_box(type="email" name='email', required autofocus  onkeydown="JavaScript:Enter_Check();")     
             #passwd_box
                 #passwd_text 
                     label(for='password') 비밀번호
@@ -54,11 +54,9 @@ block content
             var con = document.getElementById("passwd_box");
             var flag = false;
 
-            if(check.length !== 0){
+            if(check.indexOf('@')!=-1){
                 flag = true;
             }
-            
-            if(flag){
+            if(flag)
                 con.style.display = 'block';
-            }
         }

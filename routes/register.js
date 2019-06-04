@@ -8,7 +8,7 @@ const {
 var {
   User
 } = require('../models');
-
+var alert = require('alert-node');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -33,6 +33,10 @@ router.post('/', isNotLoggedIn, async (req, res, next) => {
     return res.redirect('/');
   } catch (error) {
     console.error(error);
+    //확인
+    res.redirect('/register');
+    alert('이미 존재하는 ID입니다');
+    //확인
     return next(error);
   }
   // User.create({

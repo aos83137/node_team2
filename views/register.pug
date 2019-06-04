@@ -19,3 +19,101 @@ block content
                 input#enter_nick(type="text" name="nick")
             #submission
                 input#sub_button(type="submit" value="가입하기")
+    style.
+        #register_wrap_box {
+            width: 1080px;
+            margin: auto;
+            border: solid 2px;
+        }
+
+        #register_wrap_box>a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #register_wrap_box h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        #register_form {
+            width: 800px;
+            margin: auto;
+        }
+
+        #register_id {
+            margin-left: 35%;
+        }
+
+        #register_id>#enter_id {
+            width: 250px;
+            height: 30px;
+        }
+
+        #register_password {
+            margin-left: 35%;
+        }
+
+        #register_password>#enter_password {
+            width: 250px;
+            height: 30px;
+        }
+
+        #register_password_confirm {
+            margin-left: 35%;
+        }
+
+        #register_password_confirm>#enter_password_confirm {
+            width: 250px;
+            height: 30px;
+        }
+
+        #register_password_confirm > p{
+            font-size : 12px;
+        }
+
+        #register_nick {
+            margin-left: 35%;
+        }
+
+        #register_nick>#enter_nick {
+            width: 250px;
+            height: 30px;
+        }
+
+        #submission {
+            margin-top: 50px;
+            margin-left: 35%;
+            margin-bottom: 50px;
+        }
+
+        #submission>#sub_button {
+            border: solid 2px gray;
+            width: 250px;
+            height: 40px;
+        }
+
+        #submission>input:hover {
+            color: grey;
+        }
+
+
+    script.
+        function comparePassword(obj){
+            if(enter_password_confirm.value !== ''){
+                if(enter_password.value !== enter_password_confirm.value){
+                    sameornot.textContent = '비밀번호가 일치하지 않습니다';
+                    sameornot.style.color = "red";
+                    sub_button.disabled = 'disabled';
+                }else{
+                    sameornot.textContent = '비밀번호가 일치합니다';
+                    sameornot.style.color = "green";
+                    sub_button.disabled = false;
+                }
+            }else{
+                sameornot.textContent = '비밀번호를 입력해주세요';
+                sameornot.style.color = "black";
+            }
+        }
+        //나중에 JQuery로 바꾸기. 
+        //onchange 메서드는 포커스가 없어지면 blur 이 바뀌면 호출이 되기 때문에 실시간으로 입력할 떄마다 호출해서 체크 하게 하려면 jQuery 써야됨.

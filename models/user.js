@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => (
         u_nickName : {
             type : DataTypes.STRING(20),
             allowNull : false,
+            unique : true,
         },
     }, 
     {

@@ -9,6 +9,7 @@ var {
   User
 } = require('../models');
 
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   user: req.user,
@@ -48,6 +49,5 @@ router.post('/', isNotLoggedIn, async (req, res, next) => {
   // });
   // res.redirect('/');
 });
-
 
 module.exports = router;

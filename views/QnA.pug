@@ -1,22 +1,15 @@
 extends layout
+//- link(rel="stylesheet", href="/stylesheets/bootstrap.css")
 
 block content
-    .container(style="width: 1080px; margin: 0 auto;")
-        #wrap_QnA(style="width: 800px; margin: 0 auto;  border: 1px solid black;")
-            form#QnA_form(action="")
-                div
-                    input#title(type="text" placeholder="제목")
-                div
-                    input#content(type="text" placeholder=" ")
-                div
-                    button(type="submit") 질문추가
-
-            table#QnAtable
+    .container
+        #QnATable
+            table#QnA_table(class="table table-hover")
                 thead
                     tr
-                        th(style="width:30px; text-align:center;") 번호
+                        th(style="width:50px; text-align:center;") 번호
                         //- th= qna.id
-                        th(style="width:500px; text-align:center;") 제목
+                        th(style="width:480px; text-align:center;") 제목
                         //- th= qna.name
                         th(style="width:100px; text-align:center;") 글쓴이
                         th(style="width:70px; text-align:center;") 날짜
@@ -41,32 +34,43 @@ block content
                                 input#delete(type="button" value="삭제") 
                                 input(type="button" value="답글") 
                         td
-            
-    //-table#QnAtable
-        tr
-            td(colspan="3")
-                input(type="button" value="작성")
-        tr 
-            td Q
-            td(style="width: 300px; text-align:center;") 제목
-            td
-                form(action="")
-                    input(type="button" value="수정") 
-                    input(type="button" value="삭제") 
-                    input(type="button" value="답글") 
+
+        #QnA_btn
+            button#add_question(class="btn btn-default pull-right" type="button" onclick="Qbtn_click();") 질문하기
+        form#QnA_form(action='submit')
+            #QnA_input
+                #QnA_title
+                    input#title(type="text" placeholder="제목")
+                #QnA_content
+                    input#content(type="text" placeholder=" ")    
+            #QnA_con_btn
+                button#backBtn(class="btn btn-default pull-right" type="reset" onclick="Qbtn_click();") 질문취소
+                button#inputBtn(class="btn btn-default pull-right" type="button" ) 질문추가
+
     style.
         .container {
             width: 1080px; margin: 0 auto;
         }
 
-        #wrap_QnA {
+        #QnA_con_btn {
+            display:none;
+        }
+
+        #QnA_input {
             width: 800px;
-            margin: 0 auto;
-            border: 1px solid black;
+            margin: 0 auto 100px auto;
+        }
+
+        #addquestion {
+        margin: 0 20px;
+        }
+
+        #QnA_input {
+            display:none;
         }
 
         #QnA_form input {
-            width: 99%;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -75,5 +79,107 @@ block content
         #QnA_form div > #content { height: 120px;}
 
         th, td {
-            border: 1px solid black;
+            border: 0px solid black;
         }
+
+    script.
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+        src="/javascripts/bootstraop.js"
+
+        //window.addEventListener('DOMContentLoaded', Qbtn_click(), false);
+
+        function Qbtn_click(){
+            var question = document.getElementById("QnA_input");
+            var QnA_con_btn = document.getElementById("QnA_con_btn");
+            
+            if (question.style.display == 'none') {
+                // 질문하기 버튼 클릭시 input과 질문취소, 질문추가 버튼 표시
+                question.style.display = 'block';
+                QnA_con_btn.style.display = 'block';
+                QnA_btn.style.display = 'none';
+            }else if (backBtn.click) { // 질문취소 버튼 클릭시 원래대로
+                question.style.display = 'none';
+                QnA_con_btn.style.display = 'none';
+                QnA_btn.style.display = 'block';
+            }
+        }
+
+        var q_table = [ {
+            num: '1',
+            title: '첫번째',
+            content: '첫번째 내용이구요',
+            writer: '작성자1',
+            reg_date: new Date(), // 현재 날짜요 이게 맞나?
+            originNo: '1',
+            groupOrd: '0',
+            groupLayer: '0',            
+        }, {
+            num: '2',
+            title: '두번째',
+            content: '두번째 내용이구요',
+            writer: '작성자2',
+            reg_date: new Date(), // 현재 날짜요
+            originNo: '2',
+            groupOrd: '0',
+            groupLayer: '0',  
+        } ];
+
+        /*
+        jQuery.ajax({
+            type: "post",
+            url: "http://localhost:3000/QnA",
+            data: serData,
+            dataType: "json",
+            sucess: function(q_table) {
+                showtable(q_table);
+            },
+            complete: function(xhr, status) {
+
+            },
+            error: function(shr, status, error) {
+                console.log(error);
+            }
+        })
+        */
+        var Qnum = 1;
+        var i = 1;
+        //var Qtitle = document.getElementById('#title').val();
+        //var Qcontent = document.getElementById('#content').val();
+        var Qtitle = $('title').val();
+        var Qcontent = $('content').val();
+        var Qwriter = '작성자' + i;
+        var Qdate = new Date().toLocaletimeString();
+
+        $('#inputBtn').click(function() {
+            $('#QnA_table > tbody:last').append('<tr><td>' + Qnum + '</td><td>' + Qtitle + '</td><td>' + Qwriter + '</td><td>' + Qdate + '</td></tr>');
+            Qnum++;
+            i++;
+        });
+
+        /*
+        function showtable(q_table) {
+            var div = document.querySelector('#QnATable');
+            html = '<table>';
+            html += '<tr><th>부서번호</th><th>이름</th><th>부서</th></tr>';
+            for (var i = 0; i < q_table.length; i++) {
+            console.log("test");
+            html += '<tr><td>' + q_table[i].num + '</td><td>' + q_table[i].title
+                + '</td><td> ' + q_table[i].writer + '</td><td>' + + '</td></tr>';
+            }
+            html += '</table>';
+
+            console.log('전');
+            div.innerHTML = html;
+            console.log('후');
+        }
+        */
+        /*
+        $(document).ready(function() {
+            $('#inputBtn').click(function() {
+                console.log('테이블 확인');
+                //var Qtitle = $('q_table[i].title').val(); 
+                
+            })
+        })
+        */
+        

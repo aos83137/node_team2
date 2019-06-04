@@ -9,6 +9,7 @@ const {
 
 const router = express.Router();
 
+
 /* GET home page. */
 router.get('/', isNotLoggedIn,function (req, res, next) {
   res.render('login',{
@@ -39,3 +40,4 @@ router.post('/', isNotLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
+

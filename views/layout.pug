@@ -2,7 +2,6 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
   body
     header
       p We are studying for job in Japan
@@ -23,3 +22,95 @@ html
       hr
       p Copyright@team2
       p 정현재  조영준  전용석  서영훈  정인식
+
+  style.
+    body {
+      margin: 0px;
+      background-color: #E6E6E6;
+    }
+
+    header>p {
+      text-align: center;
+      line-height: 50px;
+      font-size: 40px;
+      font-family: cursive;
+    }
+
+    #for-log>a {
+      font-family: sans-serif;
+      float: right;
+      margin-right: 50px;
+      margin-bottom: 10px;
+    }
+
+    #for-log>a:link,
+    #for-log>a:visited {
+      text-decoration: none;
+      color: black;
+    }
+
+    #for-log>a:hover {
+      color: gray;
+    }
+
+    #for-log>#logout {
+      display: none;
+    }
+
+    header>hr {
+      clear: both;
+      margin-left: 50px;
+      margin-right: 50px;
+      border: 0;
+      border-bottom: solid 5px;
+      border-radius: 30px;
+    }
+
+    #for-nav>a {
+      font-family: sans-serif;
+      margin-left: 50px;
+    }
+
+    #for-nav>a:link,
+    #for-nav>a:visited {
+      text-decoration: none;
+      color: black;
+    }
+
+    #for-nav>a:hover {
+      color: gray;
+    }
+
+    nav>hr {
+      margin-left: 50px;
+      margin-right: 50px;
+      border: 0;
+      border-bottom: solid 5px;
+      border-radius: 30px;
+    }
+
+    main {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      min-height: 400px;
+    }
+
+    footer {
+      height: 100px;
+      color: gray;
+    }
+
+    footer>hr {
+      margin-left: 50px;
+      margin-right: 50px;
+      border: 0;
+      border-top: solid 5px;
+      border-radius: 30px;
+    }
+
+    footer>p {
+      font-family: sans-serif;
+      float: right;
+      margin-right: 50px;
+      font-size: 15px;
+    }

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    #register_wrap_box
+    #login_wrap_box
         a(href="/")
             h1 Login
         form#login-form(action='submit')
@@ -18,24 +18,39 @@ block content
                 #passwd_submit 
                     button#login.btn(type='submit') 로그인
                 
-
     style.
+        #login_wrap_box {
+            width: 1080px;
+            margin: auto;
+            border: solid 2px;
+        }
+
+        #login_wrap_box>a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #login_wrap_box h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         #login-form{
-            max-width : 40%;
-            margin : 24px auto ;
+            max-width:40%;
+            margin:24px auto;
         }
         #login-form input{
-            width: 100%;
-            height: 30px;
+            width:100%;
+            height:30px;
         }
         #passwd_submit {
-            text-align : center;
-            padding : 10px;
+            text-align:center;
+            padding:10px;
         }
         #passwd_submit > button{
-            border : solid 2px gray;
-            width : 250px;
-            height : 40px;
+            border:solid 2px gray;
+            width:250px;
+            height:40px;
         }
         #passwd_box{
             display:none;
@@ -59,5 +74,4 @@ block content
             }
             if(flag)
                 con.style.display = 'block';
-            //- }
         }

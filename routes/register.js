@@ -33,7 +33,7 @@ router.post('/', isNotLoggedIn, async (req, res, next) => {
     return res.redirect('/');
   } catch (error) {
     console.error(error);
-    //확인
+    //확인 중복 아이디 일경우 만들어야함
     res.redirect('/register');
     alert('이미 존재하는 ID입니다');
     //확인

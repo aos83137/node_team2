@@ -7,7 +7,6 @@ html
     link(rel="stylesheet" href="/assets/css/main.css")
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
-  script(src="/javascript/group_member.js")
   style.
     #half1 {
     margin-top: 50px;
@@ -62,13 +61,15 @@ html
           section
             header.profile
               #half1
-                img#image1(src="images/서영훈.jpg" ,="" width="250" height="200")
-                img(src="images/정현재.jpg" ,="" width="250" height="200")
+                img#image1(src="/images/서영훈.jpg", width="250", height="200")
+                img#image2(src="/images/정현재.jpg", width="250", height="200")
               #half2
+                #half2_content
+                p#member_information
               #half3
-                img(src="images/정인식.jpg" ,="" width="250" height="200")
-                img(src="images/전용석.jpg" ,="" width="250" height="200")
-                img(src="images/조영준.jpg" ,="" width="250" height="200")
+                img#image3(src="/images/전용석.jpg", width="250", height="200")
+                img#image4(src="/images/정인식.jpg", width="250", height="200") 
+                img#image5(src="/images/조영준.jpg", width="250", height="200")
             hr
             h4 Blockquote
             blockquote
@@ -255,3 +256,4 @@ html
     script(src="assets/js/breakpoints.min.js")
     script(src="assets/js/util.js")
     script(src="assets/js/main.js")
+    script(src='/javascripts/group_member.js')

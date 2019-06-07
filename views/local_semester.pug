@@ -14,16 +14,19 @@ block content
             p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae at neque omnis iure, id illum, reprehenderit enim nulla necessitatibus hic, amet esse molestias cupiditate ab? Laborum quisquam facere fugiat officiis!
             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eius totam veritatis, cumque ex adipisci iure officia distinctio facilis? Sint doloremque nemo nobis voluptatum totam ex, harum dicta accusamus reprehenderit!
             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora animi, quo hic eum explicabo error. Nisi, voluptate nam eius, quam dignissimos neque impedit perspiciatis, quas repellendus magnam mollitia asperiores.
-
-        form#wrap_gallery(action='/img' method='post' enctype='multipart/form-data')
-            h2 갤러리
-            div 
-                input#img(type='file' name='userfile')
-                input(type='submit')
-    .aaaa    
-      for arr in aaaa
-          .main-img
-           img(src=arr.img) 
+            hr
+        //- 관리자(admin)인경우 추가 버튼 나옴
+        #lcl-gallery
+            if user && user.u_nickName=='관리자'
+                form#wrap_gallery(action='/img' method='post' enctype='multipart/form-data')
+                    h2 갤러리
+                    div 
+                        input#img(type='file' name='userfile')
+                        input(type='submit')
+            .imgCollect    
+                for arr in imgCollect
+                    .main-img
+                        img(src=arr.img) 
     style.
         #wrap_local_semester {
             margin: auto;
@@ -31,13 +34,18 @@ block content
         }
 
         #lcl_intro {
-            background-color: white;
+            background-color: rgba(255,255,255,0.6);
         }
 
         #wrap_gallery {
-            background-color: white;
         }
-
+        #lcl-gallery{
+            background-color: rgba(255,255,255,0.6);
+            padding-bottom : 30px;
+        }
+        #lcl_schedule{
+            marging: 0px;
+        }
         #button {
             display: inline-block;
             padding: 0 5px;
@@ -53,13 +61,14 @@ block content
             font-size: 12px;
         }
 
-
-        #img-preview {
-            max-width: 100%;
-        }
-
-        .aaaa {
+        .imgCollect {
             margin: auto;
+            display:flex;
+            justify-content: center;
+            flex-direction: row;
+            width: 100%;
+            min-width: 500px;
+            flex-wrap: wrap;
             max-width: 1080px;
         }
 
@@ -68,7 +77,16 @@ block content
         }
 
         .main-img {
-            display: inline;
+            flex: auto;
+            max-width:345px;
+            background:#999;
+            border-radius: 2px; 
+            margin:3px;
+        }
+
+        .main-img img{
+            width: 100%;
+            height : 100%;
         }
 
         #half2_content {
@@ -86,7 +104,6 @@ block content
             width: 900px;
             margin: auto;
             margin-top: 50px;
-            margin-bottom: 50px;
             border: solid 2px;
             border-radius: 30px;
         }
@@ -95,8 +112,6 @@ block content
             width: 900px;
             margin: auto;
             margin-top: 50px;
-            margin-bottom: 50px;
             border: solid 2px;
             border-radius: 30px;
         }
-

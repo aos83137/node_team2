@@ -25,10 +25,10 @@ router.get('/', function(req, res, next) {
    .then((posts)=>{
     res.render('local_semester', { //render 방식으로 pug에 객체 보냄
       title : 'team2',  //db이름
-      aaaa : posts, 
+      imgCollect : posts, 
       user:req.user,  
-      loginError: req.flash('loginError'), 
        //post 테이블의 내용이 posts인듯 aaaa라는 키값으로 보내서 pug에서 쓸거
+       //aaaa -> imgCollect로 수정함
     });
    })
    .catch((error)=>{

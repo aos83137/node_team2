@@ -89,7 +89,7 @@ html
         form#register_form(action='/register' method='post')
           #register_id
             h3  아이디 
-            input#enter_id(type="id" name="id" required autofocus placeholder="이메일")
+            input#enter_id(type="id" name="id" required autofocus placeholder="아이디")
           #register_password
             h3  비밀번호 
             input#enter_password(type="password" name="password" required onchange="comparePassword(this)" placeholder="비밀번호 8자리 이상")

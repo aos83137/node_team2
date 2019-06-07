@@ -1,82 +1,111 @@
-extends layout
-
-block content
-    #login_wrap_box
-        a(href="/")
-            h1 Login
-        form#login-form(action='/login' method='post')
-            #id_box(onclick="")
-                #id_text 
-                    label(for='u_id') 아이디
-                #id_input 
-                    input#email_box(type="text" name='u_id', required autofocus  onkeydown="JavaScript:Enter_Check();")     
+doctype html
+html
+  head
+    title Login
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
+    script.
+      function Enter_Check() {
+      if (window.event.keyCode == 13) {
+      login();
+      }
+      }
+      function login(){
+      var check = document.getElementById("email_box").value;
+      var con = document.getElementById("passwd_box");
+      var flag = false;
+      if(check.length !== 0){
+      flag = true;
+      }
+      if(flag){
+      con.style.display = 'block';
+      }
+      }
+  style.
+    .major > h2 {
+    font-weight: bold;
+    }
+    #login_wrap_box {
+    width: 1080px;
+    margin: auto;
+    text-align: center;
+    }
+    #login_form {
+    max-width: 40%;
+    margin: 24px auto;
+    }
+    #id_box {
+    margin-bottom: 30px;
+    font-size: 20px;
+    }
+    #passwd_box {
+    margin-bottom: 30px;
+    font-size: 20px;
+    }
+    #login_form input {
+    width: 100%;
+    }
+    #passwd_box {
+    display: none;
+    }
+    #passwd_box > #sub_button {
+    margin-top: 80px;
+    width: 250px;
+    }
+  body.is-preload
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/")
+                h5 HOME
+            li
+              a.button.primary(href="/register") Register
+      #main.wrapper.style1
+        .container
+          header.major
+            h2 LOGIN
+            h4 아이디와 비밀번호을 입력하여 로그인하세요
+          #login_wrap_box
+            form#login_form(action='/login' method='post')
+              #id_box(onclick="")
+                label#id_text(for="u_id") 아이디
+                input#email_box(type="text" name="u_id" required autofocus 
+                onkeydown="JavaScript:Enter_Check();" placeholder="Your Email Address")
                 if loginError
-                    .error-message= loginError   
-            #passwd_box
-                #passwd_text 
-                    label(for='password') 비밀번호
-                #passwd_input 
-                    input(type="password" name='password' required)
-                #passwd_submit 
-                    button#login.btn(type='submit') 로그인
-
-                
-    style.
-        #login_wrap_box {
-            width: 1080px;
-            margin: auto;
-            border: solid 2px;
-        }
-
-        #login_wrap_box>a {
-            text-decoration: none;
-            color: black;
-        }
-
-        #login_wrap_box h1 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        #login-form{
-            max-width:40%;
-            margin:24px auto;
-        }
-        #login-form input{
-            width:100%;
-            height:30px;
-        }
-        #passwd_submit {
-            text-align:center;
-            padding:10px;
-        }
-        #passwd_submit > button{
-            border:solid 2px gray;
-            width:250px;
-            height:40px;
-        }
-        #passwd_box{
-            display:none;
-        }
-
-    script. 
-        function Enter_Check() {
-            if (window.event.keyCode == 13) {
-                // 엔터키가 눌렸을 때 실행할 내용
-                login();
-            }
-        }
-
-        function login(){
-            var check = document.getElementById("email_box").value;
-            var con = document.getElementById("passwd_box");
-            var flag = false;
-
-            if(check.length !== 0){
-                flag = true;
-            }
-            
-            if(flag){
-                con.style.display = 'block';
-            }
-        }
+                    .error-message= loginError
+              #passwd_box
+                label(for="password") 비밀번호
+                input(type="password" name="password" required placeholder="********")
+                input#sub_button(type="submit" value="로그인")
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP

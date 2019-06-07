@@ -10,10 +10,9 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-
 db.User = require('./user')(sequelize, Sequelize);
 db.Post = require('./post')(sequelize, Sequelize);
-db.Post.belongsTo(db.User);
 db.Introduce = require('./introduce')(sequelize, Sequelize);
+db.QnA = require('./QnA')(sequelize,Sequelize);
 
 module.exports = db;

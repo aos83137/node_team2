@@ -1,120 +1,137 @@
-extends layout
-
-block content
-    #register_wrap_box
-        a(href="/")
-            h1 TEAM 2
-        form#register_form(action='/register' method='post')
-            #register_id
-                h3 아이디
-                input#enter_id(type="id" name="id" required)
-            #register_password
-                h3 비밀번호
-                input#enter_password(type="password" name="password" required onchange = "comparePassword(this)")
-            #register_password_confirm
-                h3 비밀번호 확인
-                input#enter_password_confirm(type="password" name="password_confirm" required onchange = "comparePassword(this)")
-                p#sameornot 비밀번호를 입력해주세요
-            #register_nick
-                h3 닉네임
-                input#enter_nick(type="nick" name="nick" required)
-            #submission
-                input#sub_button(type="submit" value="가입하기")
-    style.
-        #register_wrap_box {
-            width: 1080px;
-            margin: auto;
-            border: solid 2px;
-        }
-
-        #register_wrap_box>a {
-            text-decoration: none;
-            color: black;
-        }
-
-        #register_wrap_box h1 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        #register_form {
-            width: 800px;
-            margin: auto;
-        }
-
-        #register_id {
-            margin-left: 35%;
-        }
-
-        #register_id>#enter_id {
-            width: 250px;
-            height: 30px;
-        }
-
-        #register_password {
-            margin-left: 35%;
-        }
-
-        #register_password>#enter_password {
-            width: 250px;
-            height: 30px;
-        }
-
-        #register_password_confirm {
-            margin-left: 35%;
-        }
-
-        #register_password_confirm>#enter_password_confirm {
-            width: 250px;
-            height: 30px;
-        }
-
-        #register_password_confirm > p{
-            font-size : 12px;
-        }
-
-        #register_nick {
-            margin-left: 35%;
-        }
-
-        #register_nick>#enter_nick {
-            width: 250px;
-            height: 30px;
-        }
-
-        #submission {
-            margin-top: 50px;
-            margin-left: 35%;
-            margin-bottom: 50px;
-        }
-
-        #submission>#sub_button {
-            border: solid 2px gray;
-            width: 250px;
-            height: 40px;
-        }
-
-        #submission>input:hover {
-            color: grey;
-        }
-
-
+doctype html
+html
+  head
+    title Register
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
     script.
-        function comparePassword(obj){
-            if(enter_password_confirm.value !== ''){
-                if(enter_password.value !== enter_password_confirm.value){
-                    sameornot.textContent = '비밀번호가 일치하지 않습니다';
-                    sameornot.style.color = "red";
-                    sub_button.disabled = 'disabled';
-                }else{
-                    sameornot.textContent = '비밀번호가 일치합니다';
-                    sameornot.style.color = "green";
-                    sub_button.disabled = false;
-                }
-            }else{
-                sameornot.textContent = '비밀번호를 입력해주세요';
-                sameornot.style.color = "black";
-            }
-        }
-        //나중에 JQuery로 바꾸기. 
-        //onchange 메서드는 포커스가 없어지면 blur 이 바뀌면 호출이 되기 때문에 실시간으로 입력할 떄마다 호출해서 체크 하게 하려면 jQuery 써야됨.
+      function comparePassword(obj){
+      if(enter_password_confirm.value !== ''){
+      if(enter_password.value !== enter_password_confirm.value){
+      sameornot.textContent = '비밀번호가 일치하지 않습니다';
+      sameornot.style.color = "red";
+      sub_button.disabled = 'disabled';
+      }else{
+      sameornot.textContent = '비밀번호가 일치합니다';
+      sameornot.style.color = "greenyellow";
+      sub_button.disabled = false;
+      }
+      }else{
+      sameornot.textContent = '비밀번호를 입력해주세요';
+      sameornot.style.color = "white";
+      }
+      }
+  style.
+    #register_wrap_box {
+    text-align: center;
+    width: 1080px;
+    margin: 20px auto;
+    padding: 30px;
+    }
+    #register_form {
+    width: 800px;
+    margin: auto;
+    font-size: 15px;
+    }
+    #register_id > #enter_id {
+    width: 400px;
+    height: 40px;
+    margin-left: 25%;
+    margin-bottom: 30px;
+    }
+    #register_password > #enter_password {
+    width: 400px;
+    height: 40px;
+    margin-left: 25%;
+    margin-bottom: 30px;
+    }
+    #register_password_confirm > #enter_password_confirm {
+    width: 400px;
+    height: 40px;
+    margin-left: 25%;
+    margin-bottom: 5px;
+    }
+    #register_nick > #enter_nick {
+    margin-left: 25%;
+    width: 400px;
+    height: 40px;
+    margin-bottom: 30px;
+    }
+    #submission {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
+    .major > h2 {
+    font-weight: bold;
+    }
+    #register_password_confirm > #sameornot {
+    text-align: start;
+    font-size: 15px;
+    margin-left: 25%;
+    }
+  body.is-preload
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a.button.primary(href="/login") Login
+      #register_wrap_box
+        header.major
+          h2 Register
+        form#register_form(action='/register' method='post')
+          #register_id
+            h3  아이디 
+            input#enter_id(type="id" name="id" required autofocus placeholder="이메일")
+          #register_password
+            h3  비밀번호 
+            input#enter_password(type="password" name="password" required onchange="comparePassword(this)" placeholder="비밀번호 8자리 이상")
+          #register_password_confirm
+            h3  비밀번호 확인 
+            input#enter_password_confirm(type="password" name="password_confirm" required onchange="comparePassword(this)")
+            label#sameornot 비밀번호를 입력해주세요
+          #register_nick
+            h3  닉네임 
+            input#enter_nick(type="nick" name="nick" required)
+          #submission
+            input#sub_button(type="submit" value="가입하기")
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP
+    script(src="assets/js/jquery.min.js")
+    script(src="assets/js/jquery.scrolly.min.js")
+    script(src="assets/js/jquery.dropotron.min.js")
+    script(src="assets/js/jquery.scrollex.min.js")
+    script(src="assets/js/browser.min.js")
+    script(src="assets/js/breakpoints.min.js")
+    script(src="assets/js/util.js")
+    script(src="assets/js/main.js")

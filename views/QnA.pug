@@ -14,6 +14,12 @@ block content
                         th(style="width:100px; text-align:center;") 글쓴이
                         th(style="width:70px; text-align:center;") 날짜
                 tbody
+                    for qna in qnas
+                        tr  
+                            td= qna.id
+                            td= qna.q_title
+                            td= qna.q_nick
+                            td= qna.createdAt
                     tr
                         td#Q1num 1
                         td#Q1title 이것을 누르면 1번 QnA의 내용이 나오는가?
@@ -37,15 +43,15 @@ block content
 
         #QnA_btn
             button#add_question(class="btn btn-default pull-right" type="button" onclick="Qbtn_click();") 질문하기
-        form#QnA_form(action='submit')
+        form#QnA_form(action='/QnA' method='post')
             #QnA_input
                 #QnA_title
-                    input#title(type="text" placeholder="제목")
+                    input#title(type="text" placeholder="제목" name="title")
                 #QnA_content
-                    input#content(type="text" placeholder=" ")    
+                    input#content(type="text" placeholder=" " name="content")    
             #QnA_con_btn
                 button#backBtn(class="btn btn-default pull-right" type="reset" onclick="Qbtn_click();") 질문취소
-                button#inputBtn(class="btn btn-default pull-right" type="button" ) 질문추가
+                button#inputBtn(class="btn btn-default pull-right" type="submit") 질문추가
 
     style.
         .container {

@@ -1,195 +1,133 @@
-extends layout
-//- link(rel="stylesheet", href="/stylesheets/bootstrap.css")
-
-block content
-    .container
-        #QnATable
-            table#QnA_table(class="table table-hover")
+doctype html
+html
+  head
+    title QnA
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
+  style.
+    section > h1 {
+        font-size: 50px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #showNick {
+        margin-right: 20px;
+    }
+    #question{
+      display : none;
+    }
+    text:hover{
+      color : red;
+      cursor: pointer;
+    }
+    #QnA_table > tbody tr:hover{
+      cursor: pointer;
+    }
+  body.is-preload
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
+      #main.wrapper.style1
+        .container         
+          section
+            h1 Q & A
+            .table-wrapper
+              table#QnA_table
                 thead
-                    tr
-                        th(style="width:50px; text-align:center;") 번호
-                        //- th= qna.id
-                        th(style="width:480px; text-align:center;") 제목
-                        //- th= qna.name
-                        th(style="width:100px; text-align:center;") 글쓴이
-                        th(style="width:70px; text-align:center;") 날짜
+                  tr
+                    th number
+                    th content
+                    th nick
+                    th time
                 tbody
-                    for qna in qnas
-                        tr  
-                            td= qna.id
-                            td= qna.q_title
-                            td= qna.q_nick
-                            td= qna.createdAt
+                  for qna in qnas
+                    tr  
+                      td= qna.id
+                      td= qna.q_title
+                      td= qna.q_nick
+                      td= qna.createdAt
+
             table#test-table
-                thead
-                    tr
-                        th 아이디
-                        th 제목
-                        th 내용
-                        th 작성자
-                        th 시간
-                        th 수정
-                        th 삭제
-                tbody
-
-        #QnA_btn
-            button#add_question(class="btn btn-default pull-right" type="button" onclick="Qbtn_click();") 질문하기
-        form#QnA_form(action='/QnA' method='post')
-            #QnA_input
+              thead
+                tr
+                  th 아이디
+                  th 제목
+                  th 내용
+                  th 작성자
+                  th 시간
+                  th 수정
+                  th 삭제
+              tbody
+              
+            input#QnA_btn(type="button" value = "질문하기")
+          section#question
+            h3 질문하기
+            form( action='/QnA' method='post')
+              #QnA_input
                 #QnA_title
-                    input#title(type="text" placeholder="제목" name="title")
+                  input#name(type="text" name="title" value="" placeholder="제목")
                 #QnA_content
-                    input#content(type="text" placeholder=" " name="content")    
-            #QnA_con_btn
-                button#backBtn(class="btn btn-default pull-right" type="reset" onclick="Qbtn_click();") 질문취소
-                button#inputBtn(class="btn btn-default pull-right" type="submit") 질문추가
-
-    style.
-        .container {
-            width: 1080px; margin: 0 auto;
-        }
-
-        #QnA_con_btn {
-            display:none;
-        }
-
-        #QnA_input {
-            width: 800px;
-            margin: 0 auto 100px auto;
-        }
-
-        #addquestion {
-        margin: 0 20px;
-        }
-
-        #QnA_input {
-            display:none;
-        }
-
-        #QnA_form input {
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        #QnA_form div > #title { height: 40px;}
-
-        #QnA_form div > #content { height: 120px;}
-
-        th, td {
-            border: 0px solid black;
-        }
-
-    script.
-        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
-        src="/javascripts/bootstraop.js"
-
-        function Qbtn_click(){
-            var question = document.getElementById("QnA_input");
-            var QnA_con_btn = document.getElementById("QnA_con_btn");
-            
-            if (question.style.display == 'none') {
-                // 질문하기 버튼 클릭시 input과 질문취소, 질문추가 버튼 표시
-                question.style.display = 'block';
-                QnA_con_btn.style.display = 'block';
-                QnA_btn.style.display = 'none';
-            }else if (backBtn.click) { // 질문취소 버튼 클릭시 원래대로
-                question.style.display = 'none';
-                QnA_con_btn.style.display = 'none';
-                QnA_btn.style.display = 'block';
-            }
-        }
-
-
-        document.querySelectorAll('#QnA_table tr').forEach(function (el) {
-            el.addEventListener('click', function() {
-                var id = el.querySelector('td').textContent;
-                getContent(id);
-            });
-        });
-
-        // 댓글 로딩
-        function getContent(id) {
-            fetch('/QnA/' + id, {method: 'GET'})
-            .then((response) => {
-                if(response.status == '200') {
-                    return response.json();
-                }
-            }).then((resJson) => {
-                console.log(resJson);
-                const content = resJson;
-                var tbody = document.querySelector('#test-table tbody');
-                tbody.innerHTML = '';
-                content.map( (qna) => {
-                    var row = document.createElement('tr');
-                    var td = document.createElement('td');
-                    td.textContent = qna.id;
-                    row.appendChild(td);
-                    td = document.createElement('td');
-                    td.textContent = qna.q_title;
-                    row.appendChild(td);
-                    td = document.createElement('td');
-                    td.textContent = qna.q_body;
-                    row.appendChild(td);
-                    td = document.createElement('td');
-                    td.textContent = qna.q_nick;
-                    row.appendChild(td);
-                    td = document.createElement('td');
-                    td.textContent = qna.createdAt;
-                    row.appendChild(td);
-                    var edit = document.createElement('button');
-                    edit.textContent = '수정';
-                    edit.addEventListener('click', () => {
-                        // 수정 클릭 시
-                        var newContent = prompt('바꿀 내용을 입력하세요.');
-                        if (!newContent) {
-                            return alert('내용을 반드시 입력하셔야 합니다.');
-                        }
-                        fetch('/QnA/' + qna.id, {
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            method: "PATCH",
-                            body: JSON.stringify({content: newContent})
-                        }).then((response) => {
-                            if(response.status == '200') {
-                                return response.json();
-                            }
-                        }).then((resJson) => {
-                            console.log(resJson);
-                            getContent(id);
-                        }).catch((error) => {
-                            console.error('fetch 호출에서 에러발생: ' + error.message);
-                        });
-                    });
-                    var remove = document.createElement('button');
-                    remove.textContent = '삭제';
-                    remove.addEventListener('click', () => { 
-                        //삭제 클릭시
-                        fetch('/QnA/' + qna.id, {method: 'delete'}
-                        ).then((response) => {
-                            if(response.status == '200'){
-                                return response.json();
-                            }
-                        }).then((resJson) => {
-                            console.log(resJson);
-                            getContent(id);
-                        }).catch((error) => {
-                            console.error('fetch 호출에서 에러발생: ' + error.message);
-                        });
-                    });
-                    td = document.createElement('td');
-                    td.appendChild(edit);
-                    row.appendChild(td);
-                    td = document.createElement('td');
-                    td.appendChild(remove);
-                    row.appendChild(td);
-                    tbody.appendChild(row);
-                });
-            }).catch((error) => {
-                console.error('fetch 호출에서 에러발생: ' + error.message);
-            });
-        }
-
-
-        
+                  textarea#message(name="content" placeholder="내용을 입력하세요" rows="6")
+                #qna_con_btn
+                  ul.actions
+                    li
+                      input#inputBtn(type="submit" value="저장하기")
+                    li
+                      input#backBtn(type="reset" value="취소")
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP
+    script(src="assets/js/jquery.min.js")
+    script(src="assets/js/jquery.scrolly.min.js")
+    script(src="assets/js/jquery.dropotron.min.js")
+    script(src="assets/js/jquery.scrollex.min.js")
+    script(src="assets/js/browser.min.js")
+    script(src="assets/js/breakpoints.min.js")
+    script(src="assets/js/util.js")
+    script(src="assets/js/main.js")
+    script(src='/javascripts/QnA.js')

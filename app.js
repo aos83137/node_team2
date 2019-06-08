@@ -15,6 +15,7 @@ const login = require('./routes/login');
 const logout = require('./routes/logout');
 const register = require('./routes/register');
 const QnA = require('./routes/QnA');
+const semester = require('./routes/semester');
 const group_member = require('./routes/group_member');
 const passportConfig = require('./passport');
 
@@ -40,14 +41,13 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/img',express.static(path.join(__dirname,'uploads')));
-// 폴더를 /img 경로라는 가상경로로 접근
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser("1234"));
 app.use(session({
   resave:false,
   saveUninitialized:false,
-  secret: process.env.COOKIE_SECRET,
+  secret: "1234",
   cookie:{
     httpOnly:true,
     secure:false,
@@ -61,6 +61,7 @@ app.use('/', local_semester);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register', register);
+app.use('/semester', semester);
 app.use('/QnA', QnA);
 app.use('/group_member', group_member);
 

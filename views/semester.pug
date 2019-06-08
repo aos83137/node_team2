@@ -71,18 +71,9 @@ html
             li
               a(href="/semester") Semester
             li
-              a(href="/group_member") Members
-            li
               a(href="/QnA") Q & A
-            if !user
-              li
-                a.button.primary(href="/login") Login
-              li
-                a.button.primary(href="/register") Register
-            else
-              li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
-                a.button.primary(href='/logout') Logout
+            li
+              a.button.primary(href="/login") Login
       #main.wrapper.style1
         .container
           header.major
@@ -112,124 +103,7 @@ html
             for arr in gallery
               .main-img
                 img#image(src=arr.img name=arr.id)
-                //- p#img_content= arr.content
-                //- img(src=arr.img, name=arr.id)
 
-          //- form#wrap_gallery(action='/img' method='post' enctype='multipart/form-data')
-          //-   h2 갤러리
-          //-   div
-          //-     textarea#img_con(name="content", cols="30", rows="10" maxlength=140)
-          //-     input#img_1(type='file' name='userfile')
-          //-     input(type='submit')
-          //-   .gallery
-          //-     for arr in gallery
-          //-       .main-img
-          //-         img#image-sem(src=arr.img name=arr.id)
-          //-         p#img_content= arr.content
-            h4 Default
-            .table-wrapper
-              table
-                thead
-                  tr
-                    th Name
-                    th Description
-                    th Price
-                tbody
-                  tr
-                    td Item 1
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                  tr
-                    td Item 2
-                    td Vis ac commodo adipiscing arcu aliquet.
-                    td 19.99
-                  tr
-                    td Item 3
-                    td  Morbi faucibus arcu accumsan lorem.
-                    td 29.99
-                  tr
-                    td Item 4
-                    td Vitae integer tempus condimentum.
-                    td 19.99
-                  tr
-                    td Item 5
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                tfoot
-                  tr
-                    td(colspan="2")
-                    td 100.00
-            h4 Alternate
-            .table-wrapper
-              table.alt
-                thead
-                  tr
-                    th Name
-                    th Description
-                    th Price
-                tbody
-                  tr
-                    td Item 1
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                  tr
-                    td Item 2
-                    td Vis ac commodo adipiscing arcu aliquet.
-                    td 19.99
-                  tr
-                    td Item 3
-                    td  Morbi faucibus arcu accumsan lorem.
-                    td 29.99
-                  tr
-                    td Item 4
-                    td Vitae integer tempus condimentum.
-                    td 19.99
-                  tr
-                    td Item 5
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                tfoot
-                  tr
-                    td(colspan="2")
-                    td 100.00
-          section
-            h3 Form
-            form(method="post" action="#")
-              .row.gtr-uniform.gtr-50
-                .col-6.col-12-xsmall
-                  input#name(type="text" name="name" value="" placeholder="Name")
-                .col-6.col-12-xsmall
-                  input#email(type="email" name="email" value="" placeholder="Email")
-                .col-12
-                  select#category(name="category")
-                    option(value="") - Category -
-                    option(value="1") Manufacturing
-                    option(value="1") Shipping
-                    option(value="1") Administration
-                    option(value="1") Human Resources
-                .col-4.col-12-medium
-                  input#priority-low(type="radio" name="priority" checked="")
-                  label(for="priority-low") Low Priority
-                .col-4.col-12-medium
-                  input#priority-normal(type="radio" name="priority")
-                  label(for="priority-normal") Normal Priority
-                .col-4.col-12-medium
-                  input#priority-high(type="radio" name="priority")
-                  label(for="priority-high") High Priority
-                .col-6.col-12-medium
-                  input#copy(type="checkbox" name="copy")
-                  label(for="copy") Email me a copy of this message
-                .col-6.col-12-medium
-                  input#human(type="checkbox" name="human" checked="")
-                  label(for="human") I am a human and not a robot
-                .col-12
-                  textarea#message(name="message" placeholder="Enter your message" rows="6")
-                .col-12
-                  ul.actions
-                    li
-                      input.primary(type="submit" value="Send Message")
-                    li
-                      input(type="reset" value="Reset")
       footer#footer
         ul.icons
           li

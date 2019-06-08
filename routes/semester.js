@@ -37,7 +37,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/img', upload.single('userfile'), function(req,res,next){
   // 'userfile' pug파일에 보면 인풋에 이름이랑 맞춰야함
-  console.log(1);
   
   Post.create({ // models에 insert 
     img:  `/img/${req.file.filename}`, // 거기에 img 속성에 이값 넣음

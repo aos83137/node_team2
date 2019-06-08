@@ -16,37 +16,15 @@ html
     #showNick {
         margin-right: 20px;
     }
-    #half1 {
-    margin-top: 50px;
+    #question{
+      display : none;
     }
-    #half2 {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 200px;
-    margin-right: 200px;
-    border: solid 2px;
-    border-radius: 30px;
+    text:hover{
+      color : red;
+      cursor: pointer;
     }
-    #half3 {
-    margin-bottom: 50px;
-    }
-    .profile {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    }
-    .profile img {
-    border: solid 2px gray;
-    border-radius: 20%;
-    margin: 20px;
-    transition: all ease 0.2s;
-    }
-    .profile img:hover {
-    transform: scale(1.2);
-    border: solid 2px purple;
-    }
-    .major > h2 {
-        font-weight: bold;
+    #QnA_table > tbody tr:hover{
+      cursor: pointer;
     }
   body.is-preload
     #page-wrapper
@@ -60,9 +38,7 @@ html
             li
               a(href="/semester") Semester
             li
-              a(href="/group_member") Members
-            li
-              a(href="/QnA") Q & A
+              a(href="/group_member") Member
             if !user
               li
                 a.button.primary(href="/login") Login
@@ -77,66 +53,48 @@ html
           section
             h1 Q & A
             .table-wrapper
-              table
+              table#QnA_table
                 thead
                   tr
-                    th Name
-                    th Description
-                    th Price
+                    th number
+                    th content
+                    th nick
+                    th time
                 tbody
-                  tr
-                    td Item 1
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                  tr
-                    td Item 2
-                    td Vis ac commodo adipiscing arcu aliquet.
-                    td 19.99
-                  tr
-                    td Item 3
-                    td  Morbi faucibus arcu accumsan lorem.
-                    td 29.99
-                  tr
-                    td Item 4
-                    td Vitae integer tempus condimentum.
-                    td 19.99
-                  tr
-                    td Item 5
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                tfoot
-                  tr
-                    td(colspan="2")
-                    td 100.00
-          section
-            h3 Form
-            form(method="post" action="#")
-              .row.gtr-uniform.gtr-50
-                .col-6.col-12-xsmall
-                  input#name(type="text" name="name" value="" placeholder="제목")
-                .col-6.col-12-xsmall
-                  input#email(type="email" name="email" value="" placeholder="Email")
-                .col-12
-                  select#category(name="category")
-                    option(value="") - 카테고리 -
-                    option(value="1") 일본 현지 학기제
-                    option(value="1") 웹사이트 피드백
-                    option(value="1") 자유 수다
-                    option(value="1") 신고
-                .col-6.col-12-medium
-                  input#copy(type="checkbox" name="hide")
-                  label(for="copy") 비공개(관리자만 열람 가능)
-                .col-6.col-12-medium
-                  input#human(type="checkbox" name="ban")
-                  label(for="human") 댓글 금지하기
-                .col-12
-                  textarea#message(name="message" placeholder="내용을 입력하세요" rows="6")
-                .col-12
+                  for qna in qnas
+                    tr  
+                      td= qna.id
+                      td= qna.q_title
+                      td= qna.q_nick
+                      td= qna.createdAt
+
+            table#test-table
+              thead
+                tr
+                  th 아이디
+                  th 제목
+                  th 내용
+                  th 작성자
+                  th 시간
+                  th 수정
+                  th 삭제
+              tbody
+              
+            input#QnA_btn(type="button" value = "질문하기")
+          section#question
+            h3 질문하기
+            form( action='/QnA' method='post')
+              #QnA_input
+                #QnA_title
+                  input#name(type="text" name="title" value="" placeholder="제목")
+                #QnA_content
+                  textarea#message(name="content" placeholder="내용을 입력하세요" rows="6")
+                #qna_con_btn
                   ul.actions
                     li
-                      input.primary(type="submit" value="저장하기")
+                      input#inputBtn(type="submit" value="저장하기")
                     li
-                      input(type="reset" value="취소")
+                      input#backBtn(type="reset" value="취소")
       footer#footer
         ul.icons
           li
@@ -171,3 +129,5 @@ html
     script(src="assets/js/util.js")
     script(src="assets/js/main.js")
     script(src='/javascripts/group_member.js')
+    script(src='/javascripts/QnA.js')
+        

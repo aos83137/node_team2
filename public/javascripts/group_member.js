@@ -18,9 +18,9 @@
         var member_information = document.getElementById('member_information');
 
         function for_image(id){
-
+            
             // half2.style.height = "200px";
-            half2.style.padding = "10px 0";
+            document.getElementById('half2').style.padding = "10px 0";
 
             fetch('/group_member/' + id, {method: 'GET'})
             .then((response) => {

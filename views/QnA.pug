@@ -20,26 +20,17 @@ block content
                             td= qna.q_title
                             td= qna.q_nick
                             td= qna.createdAt
+            table#test-table
+                thead
                     tr
-                        td#Q1num 1
-                        td#Q1title 이것을 누르면 1번 QnA의 내용이 나오는가?
-                        td#Q1writer 사람1
-                        td#Q1date 2019/05/30
-                    tr
-                        td#Q2num 2
-                        td#Q2title 이것을 누르면 2번 QnA의 내용과 수정, 삭제, 답글이 나오는가?
-                        td#Q2writer 사람2
-                        td#Q2date 2019/05/30
-                    tr
-                        td
-                        td(colspan="2") 
-                            span
-                                div 이것은 2번이 클릭되면 표시되도록 해야합니다. &nbsp;또한 2번 제목을 클릭하였을 때 표시되도록 해야합니다.
-                            form(action="")
-                                input(type="button" value="수정") 
-                                input#delete(type="button" value="삭제") 
-                                input(type="button" value="답글") 
-                        td
+                        th 아이디
+                        th 제목
+                        th 내용
+                        th 작성자
+                        th 시간
+                        th 수정
+                        th 삭제
+                tbody
 
         #QnA_btn
             button#add_question(class="btn btn-default pull-right" type="button" onclick="Qbtn_click();") 질문하기
@@ -92,8 +83,6 @@ block content
         src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
         src="/javascripts/bootstraop.js"
 
-        //window.addEventListener('DOMContentLoaded', Qbtn_click(), false);
-
         function Qbtn_click(){
             var question = document.getElementById("QnA_input");
             var QnA_con_btn = document.getElementById("QnA_con_btn");
@@ -110,82 +99,97 @@ block content
             }
         }
 
-        var q_table = [ {
-            num: '1',
-            title: '첫번째',
-            content: '첫번째 내용이구요',
-            writer: '작성자1',
-            reg_date: new Date(), // 현재 날짜요 이게 맞나?
-            originNo: '1',
-            groupOrd: '0',
-            groupLayer: '0',            
-        }, {
-            num: '2',
-            title: '두번째',
-            content: '두번째 내용이구요',
-            writer: '작성자2',
-            reg_date: new Date(), // 현재 날짜요
-            originNo: '2',
-            groupOrd: '0',
-            groupLayer: '0',  
-        } ];
 
-        /*
-        jQuery.ajax({
-            type: "post",
-            url: "http://localhost:3000/QnA",
-            data: serData,
-            dataType: "json",
-            sucess: function(q_table) {
-                showtable(q_table);
-            },
-            complete: function(xhr, status) {
-
-            },
-            error: function(shr, status, error) {
-                console.log(error);
-            }
-        })
-        */
-        var Qnum = 1;
-        var i = 1;
-        //var Qtitle = document.getElementById('#title').val();
-        //var Qcontent = document.getElementById('#content').val();
-        var Qtitle = $('title').val();
-        var Qcontent = $('content').val();
-        var Qwriter = '작성자' + i;
-        var Qdate = new Date().toLocaletimeString();
-
-        $('#inputBtn').click(function() {
-            $('#QnA_table > tbody:last').append('<tr><td>' + Qnum + '</td><td>' + Qtitle + '</td><td>' + Qwriter + '</td><td>' + Qdate + '</td></tr>');
-            Qnum++;
-            i++;
+        document.querySelectorAll('#QnA_table tr').forEach(function (el) {
+            el.addEventListener('click', function() {
+                var id = el.querySelector('td').textContent;
+                getContent(id);
+            });
         });
 
-        /*
-        function showtable(q_table) {
-            var div = document.querySelector('#QnATable');
-            html = '<table>';
-            html += '<tr><th>부서번호</th><th>이름</th><th>부서</th></tr>';
-            for (var i = 0; i < q_table.length; i++) {
-            console.log("test");
-            html += '<tr><td>' + q_table[i].num + '</td><td>' + q_table[i].title
-                + '</td><td> ' + q_table[i].writer + '</td><td>' + + '</td></tr>';
-            }
-            html += '</table>';
-
-            console.log('전');
-            div.innerHTML = html;
-            console.log('후');
+        // 댓글 로딩
+        function getContent(id) {
+            fetch('/QnA/' + id, {method: 'GET'})
+            .then((response) => {
+                if(response.status == '200') {
+                    return response.json();
+                }
+            }).then((resJson) => {
+                console.log(resJson);
+                const content = resJson;
+                var tbody = document.querySelector('#test-table tbody');
+                tbody.innerHTML = '';
+                content.map( (qna) => {
+                    var row = document.createElement('tr');
+                    var td = document.createElement('td');
+                    td.textContent = qna.id;
+                    row.appendChild(td);
+                    td = document.createElement('td');
+                    td.textContent = qna.q_title;
+                    row.appendChild(td);
+                    td = document.createElement('td');
+                    td.textContent = qna.q_body;
+                    row.appendChild(td);
+                    td = document.createElement('td');
+                    td.textContent = qna.q_nick;
+                    row.appendChild(td);
+                    td = document.createElement('td');
+                    td.textContent = qna.createdAt;
+                    row.appendChild(td);
+                    var edit = document.createElement('button');
+                    edit.textContent = '수정';
+                    edit.addEventListener('click', () => {
+                        // 수정 클릭 시
+                        var newContent = prompt('바꿀 내용을 입력하세요.');
+                        if (!newContent) {
+                            return alert('내용을 반드시 입력하셔야 합니다.');
+                        }
+                        fetch('/QnA/' + qna.id, {
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            method: "PATCH",
+                            body: JSON.stringify({content: newContent})
+                        }).then((response) => {
+                            if(response.status == '200') {
+                                return response.json();
+                            }
+                        }).then((resJson) => {
+                            console.log(resJson);
+                            getContent(id);
+                        }).catch((error) => {
+                            console.error('fetch 호출에서 에러발생: ' + error.message);
+                        });
+                    });
+                    var remove = document.createElement('button');
+                    remove.textContent = '삭제';
+                    remove.addEventListener('click', () => { 
+                        //삭제 클릭시
+                        fetch('/QnA/' + qna.id, {method: 'delete'}
+                        ).then((response) => {
+                            if(response.status == '200'){
+                                return response.json();
+                            }
+                        }).then((resJson) => {
+                            console.log(resJson);
+                            getContent(id);
+                        }).catch((error) => {
+                            console.error('fetch 호출에서 에러발생: ' + error.message);
+                        });
+                    });
+                    td = document.createElement('td');
+                    td.appendChild(edit);
+                    row.appendChild(td);
+                    td = document.createElement('td');
+                    td.appendChild(remove);
+                    row.appendChild(td);
+                    tbody.appendChild(row);
+                });
+            }).catch((error) => {
+                console.error('fetch 호출에서 에러발생: ' + error.message);
+            });
         }
-        */
-        /*
-        $(document).ready(function() {
-            $('#inputBtn').click(function() {
-                console.log('테이블 확인');
-                //var Qtitle = $('q_table[i].title').val(); 
-                
-            })
-        })
-        */
+
+
         

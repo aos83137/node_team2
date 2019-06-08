@@ -8,6 +8,9 @@ html
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
+    #showNick {
+        margin-right: 20px;
+      }
     #half1 {
     margin-top: 50px;
     }
@@ -50,9 +53,20 @@ html
             li
               a(href="/") Home
             li
-              a(href="/QnA") Q & A
+              a(href="/semester") Semester
             li
-              a.button.primary(href="/login") Login
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
       #main.wrapper.style1
         .container
           header.major

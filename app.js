@@ -15,6 +15,7 @@ const login = require('./routes/login');
 const logout = require('./routes/logout');
 const register = require('./routes/register');
 const QnA = require('./routes/QnA');
+const semester = require('./routes/semester');
 const group_member = require('./routes/group_member');
 const passportConfig = require('./passport');
 
@@ -61,6 +62,7 @@ app.use('/', local_semester);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register', register);
+app.use('/semester', semester);
 app.use('/QnA', QnA);
 app.use('/group_member', group_member);
 

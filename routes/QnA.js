@@ -52,7 +52,7 @@ router.post('/', isLoggedIn, async (req,res,next)=>{
 });
 
 router.patch('/:id', (req, res, next) => {
-  QnA.update({q_body:req.body.content}, {where: {id: req.params.id}})
+  QnA.update({q_title:req.body.title, q_body:req.body.content}, {where: {id: req.params.id}})
   .then((result) => {
       res.json(result);
   })

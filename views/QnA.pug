@@ -27,7 +27,7 @@ html
       cursor: pointer;
     }
 
-    #qna_information{
+    #qna_information, #qna_information_normal{
       margin-top : 30px;
       margin-bottom : 30px;
       text-align : end;
@@ -69,7 +69,7 @@ html
                 thead
                   tr
                     th number
-                    th content
+                    th title
                     th nick
                     th time
                 tbody
@@ -78,8 +78,18 @@ html
                       td= qna.id
                       td= qna.q_title
                       td= qna.q_nick
-                      td= qna.createdAtz
-            #qna_information
+                      td= qna.createdAt
+            if user
+              input#get_u_nickName(type='text' value= user.u_nickName)
+            if user && user.u_nickName=='관리자'
+              //- 관리자
+              #qna_information
+            else if user && user.u_nickName==''
+              //- 일반유저 본인
+              #qna_information_normal
+            else
+              //- not 로그인
+              #qna_information_none
             input#QnA_btn(type="button" value = "질문하기")
           section#question
             h3 질문하기
@@ -120,6 +130,7 @@ html
           li
             | Design: 
             a(href="http://html5up.net") HTML5 UP
+
     script(src="assets/js/jquery.min.js")
     script(src="assets/js/jquery.scrolly.min.js")
     script(src="assets/js/jquery.dropotron.min.js")

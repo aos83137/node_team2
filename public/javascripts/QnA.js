@@ -42,53 +42,44 @@ function getContent(id) {
     }).then((resJson) => {
         console.log(resJson);
         const content = resJson;
-        var tbody = document.querySelector('#test-table tbody');
-        tbody.innerHTML = '';
+        var for_info_div = document.querySelector('#qna_information');
+        for_info_div.innerHTML = '';
         content.map( (qna) => {
-            var row = document.createElement('tr');
-            var td = document.createElement('td');
-            td.textContent = qna.id;
-            row.appendChild(td);
-            td = document.createElement('td');
-            td.textContent = qna.q_title;
-            row.appendChild(td);
-            td = document.createElement('td');
-            td.textContent = qna.q_body;
-            row.appendChild(td);
-            td = document.createElement('td');
-            td.textContent = qna.q_nick;
-            row.appendChild(td);
-            td = document.createElement('td');
-            td.textContent = qna.createdAt;
-            row.appendChild(td);
+            var for_title = document.createElement('input');
+            for_title.type='text';
+            for_title.id= 'name'
+            for_title.value = qna.q_title;
+            for_title.textContent = qna.q_title;
+            for_info_div.append(for_title);
+            var for_content = document.createElement('textarea')
+            for_content.value = qna.q_body;
+            for_content.rows = '6';
+            for_info_div.append(for_content);
             var edit = document.createElement('text');
             edit.textContent = '수정';
+            edit.id = "edit";
             edit.addEventListener('click', () => {
-                // 수정 클릭 시
-                var newContent = prompt('바꿀 내용을 입력하세요.');
-                if (!newContent) {
-                    return alert('내용을 반드시 입력하셔야 합니다.');
-                }
                 fetch('/QnA/' + qna.id, {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     method: "PATCH",
-                    body: JSON.stringify({content: newContent})
+                    body: JSON.stringify({title : for_title.value, content: for_content.value})
                 }).then((response) => {
                     if(response.status == '200') {
                         return response.json();
                     }
                 }).then((resJson) => {
                     console.log(resJson);
-                    getContent(id);
+                    location.reload();
                 }).catch((error) => {
                     console.error('fetch 호출에서 에러발생: ' + error.message);
                 });
             });
             var remove = document.createElement('text');
             remove.textContent = '삭제';
+            remove.id = "remove";
             remove.addEventListener('click', () => { 
                 //삭제 클릭시
                 fetch('/QnA/' + qna.id, {method: 'delete'}
@@ -103,13 +94,8 @@ function getContent(id) {
                     console.error('fetch 호출에서 에러발생: ' + error.message);
                 });
             });
-            td = document.createElement('td');
-            td.appendChild(edit);
-            row.appendChild(td);
-            td = document.createElement('td');
-            td.appendChild(remove);
-            row.appendChild(td);
-            tbody.appendChild(row);
+            for_info_div.append(edit);
+            for_info_div.append(remove);
         });
     }).catch((error) => {
         console.error('fetch 호출에서 에러발생: ' + error.message);

@@ -35,7 +35,9 @@ html
     #edit{
       margin-right : 20px;
     }
-
+    #get_u_nickName{
+      display: none;
+    }
   body.is-preload
     #page-wrapper
       header#header
@@ -81,15 +83,7 @@ html
                       td= qna.createdAt
             if user
               input#get_u_nickName(type='text' value= user.u_nickName)
-            if user && user.u_nickName=='관리자'
-              //- 관리자
-              #qna_information
-            else if user && user.u_nickName==''
-              //- 일반유저 본인
-              #qna_information_normal
-            else
-              //- not 로그인
-              #qna_information_none
+            #qna_information
             input#QnA_btn(type="button" value = "질문하기")
           section#question
             h3 질문하기

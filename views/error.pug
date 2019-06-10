@@ -1,58 +1,34 @@
 doctype html
 html
   head
-    title Login
+    title Semester
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
     link(rel="stylesheet" href="/assets/css/main.css")
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
-    script.
-      function Enter_Check() {
-      if (window.event.keyCode == 13) {
-      login();
-      }
-      }
-      function login(){
-      var check = document.getElementById("email_box").value;
-      var con = document.getElementById("passwd_box");
-      var flag = false;
-      if(check.length !== 0){
-      flag = true;
-      }
-      if(flag){
-      con.style.display = 'block';
-      }
-      }
-    css.
-      #error_css{
-        
-      }
-  body.is-preload
-    #page-wrapper
-      header#header
-        h1#logo
-          a(href="/") Team 2
-        nav#nav
-          ul
-            li
-              a(href="/") Home
-            li
-              a(href="/semester") Semester
-            li
-              a(href="/group_member") Members
-            li
-              a(href="/QnA") Q & A
-            if !user
-              li
-                a.button.primary(href="/login") Login
-              li
-                a.button.primary(href="/register") Register
-            else
-              li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
-                a.button.primary(href='/logout') Logout
-      section#error_css
-        h1= message
-        h2= error.status
-        pre #{error.stack}
+  style.
+    .error#content {
+      margin: 20px;
+      color: red;
+      font-family: fantasy;
+    }
+    .error#content > h1, h2 {
+      text-align: center;
+      color: yellow;
+      font-size: 30px;
+    }
+    
+  body
+    .error#content
+      h1= message
+      h2= error.status
+      pre #{error.stack}
+//- <!DOCTYPE html>
+//- html(lang="en")
+//-   head
+//-     meta(charset="UTF-8")
+//-     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+//-     meta(http-equiv="X-UA-Compatible", content="ie=edge")
+//-     title Document
+  

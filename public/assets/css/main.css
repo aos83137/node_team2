@@ -585,10 +585,10 @@ input, select, textarea {
 		}
 
 		body.landing:after {
-			-moz-animation: overlay-hide 1.5s ease-in forwards !important;
-			-webkit-animation: overlay-hide 1.5s ease-in forwards !important;
-			-ms-animation: overlay-hide 1.5s ease-in forwards !important;
-			animation: overlay-hide 1.5s ease-in forwards !important;
+			-moz-animation: overlay-hide 0.5s ease-in forwards !important;
+			-webkit-animation: overlay-hide 0.5s ease-in forwards !important;
+			-ms-animation: overlay-hide 0.5s ease-in forwards !important;
+			animation: overlay-hide 0.5s ease-in forwards !important;
 			background: #1c1d26;
 			content: '';
 			display: block;
@@ -2708,6 +2708,7 @@ input, select, textarea {
 					}
 
 					ul.actions:not(.fixed) li input[type="submit"],
+					ul.actions:not(.fixed) li input[type="submit2"],
 					ul.actions:not(.fixed) li input[type="reset"],
 					ul.actions:not(.fixed) li input[type="button"],
 					ul.actions:not(.fixed) li button,
@@ -2716,6 +2717,7 @@ input, select, textarea {
 					}
 
 						ul.actions:not(.fixed) li input[type="submit"].icon:before,
+						ul.actions:not(.fixed) li input[type="submit2"].icon:before,
 						ul.actions:not(.fixed) li input[type="reset"].icon:before,
 						ul.actions:not(.fixed) li input[type="button"].icon:before,
 						ul.actions:not(.fixed) li button.icon:before,
@@ -2796,6 +2798,7 @@ input, select, textarea {
 /* Button */
 
 	input[type="submit"],
+	input[type="file"],
 	input[type="reset"],
 	input[type="button"],
 	.button {
@@ -2824,6 +2827,7 @@ input, select, textarea {
 	}
 
 		input[type="submit"]:hover, input[type="submit"]:active,
+		input[type="file"]:hover, input[type="file"]:active,
 		input[type="reset"]:hover,
 		input[type="reset"]:active,
 		input[type="button"]:hover,
@@ -2835,6 +2839,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"]:active,
+		input[type="file"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		.button:active {
@@ -2842,6 +2847,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].icon:before,
+		input[type="file"].icon:before,
 		input[type="reset"].icon:before,
 		input[type="button"].icon:before,
 		.button.icon:before {
@@ -2849,6 +2855,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].fit,
+		input[type="file"].fit,
 		input[type="reset"].fit,
 		input[type="button"].fit,
 		.button.fit {
@@ -2856,6 +2863,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].small,
+		input[type="file"].small,
 		input[type="reset"].small,
 		input[type="button"].small,
 		.button.small {
@@ -2863,6 +2871,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].large,
+		input[type="file"].large,
 		input[type="reset"].large,
 		input[type="button"].large,
 		.button.large {
@@ -2870,6 +2879,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].primary,
+		input[type="file"].primary,
 		input[type="reset"].primary,
 		input[type="button"].primary,
 		.button.primary {
@@ -2879,6 +2889,7 @@ input, select, textarea {
 		}
 
 			input[type="submit"].primary:hover,
+			input[type="file"].primary:hover,
 			input[type="reset"].primary:hover,
 			input[type="button"].primary:hover,
 			.button.primary:hover {
@@ -2886,6 +2897,7 @@ input, select, textarea {
 			}
 
 			input[type="submit"].primary:active,
+			input[type="submit2"].primary:active,
 			input[type="reset"].primary:active,
 			input[type="button"].primary:active,
 			.button.primary:active {
@@ -2893,6 +2905,7 @@ input, select, textarea {
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
+		input[type="submit2"].disabled, input[type="submit2"]:disabled,
 		input[type="reset"].disabled,
 		input[type="reset"]:disabled,
 		input[type="button"].disabled,
@@ -3190,6 +3203,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style2 input[type="submit"]:hover, .wrapper.style2 input[type="submit"]:active,
+			.wrapper.style2 input[type="submi2"]:hover, .wrapper.style2 input[type="submit2"]:active,
 			.wrapper.style2 input[type="reset"]:hover,
 			.wrapper.style2 input[type="reset"]:active,
 			.wrapper.style2 input[type="button"]:hover,
@@ -3202,12 +3216,14 @@ input, select, textarea {
 			}
 
 			.wrapper.style2 input[type="submit"]:active,
+			.wrapper.style2 input[type="submit2"]:active,
 			.wrapper.style2 input[type="reset"]:active,
 			.wrapper.style2 input[type="button"]:active,
 			.wrapper.style2 .button:active {
 				background-color: rgba(255, 255, 255, 0.25) !important;
 			}
 
+			.wrapper.style2 input[type="submit"].primary,
 			.wrapper.style2 input[type="submit"].primary,
 			.wrapper.style2 input[type="reset"].primary,
 			.wrapper.style2 input[type="button"].primary,
@@ -3217,6 +3233,7 @@ input, select, textarea {
 			}
 
 				.wrapper.style2 input[type="submit"].primary:hover, .wrapper.style2 input[type="submit"].primary:active,
+				.wrapper.style2 input[type="submit2"].primary:hover, .wrapper.style2 input[type="submit2"].primary:active,
 				.wrapper.style2 input[type="reset"].primary:hover,
 				.wrapper.style2 input[type="reset"].primary:active,
 				.wrapper.style2 input[type="button"].primary:hover,
@@ -3229,6 +3246,7 @@ input, select, textarea {
 				}
 
 				.wrapper.style2 input[type="submit"].primary:active,
+				.wrapper.style2 input[type="submit2"].primary:active,
 				.wrapper.style2 input[type="reset"].primary:active,
 				.wrapper.style2 input[type="button"].primary:active,
 				.wrapper.style2 .button.primary:active {
@@ -4032,6 +4050,7 @@ input, select, textarea {
 		/* Button */
 
 			input[type="submit"],
+			input[type="submit2"],
 			input[type="reset"],
 			input[type="button"],
 			.button {

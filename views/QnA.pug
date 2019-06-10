@@ -8,6 +8,9 @@ html
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
+    section#question > hr {
+      border: solid 1px;
+    }
     section > h1 {
         font-size: 50px;
         text-align: center;
@@ -26,6 +29,15 @@ html
     #QnA_table > tbody tr:hover{
       cursor: pointer;
     }
+
+    #QnA_title {
+      margin-bottom: 10px;
+    }
+
+    #QnA_content {
+      margin-bottom: 10px;
+    }
+
     #qna_information{
       margin-top : 30px;
       margin-bottom : 30px;
@@ -140,7 +152,6 @@ html
           li
             | Design: 
             a(href="http://html5up.net") HTML5 UP
-
     script(src="assets/js/jquery.min.js")
     script(src="assets/js/jquery.scrolly.min.js")
     script(src="assets/js/jquery.dropotron.min.js")

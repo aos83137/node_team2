@@ -26,18 +26,33 @@ html
     #QnA_table > tbody tr:hover{
       cursor: pointer;
     }
-
-    #qna_information, #qna_information_normal{
+    #qna_information{
       margin-top : 30px;
       margin-bottom : 30px;
       text-align : end;
     }
-    #edit{
+    #qna_information text{
       margin-right : 20px;
     }
     #get_u_nickName{
       display: none;
     }
+    #answer_box{
+      margin-top : 20px;
+    }
+
+    input{
+      margin-top : 10px;
+    }
+
+    #for_qid{
+      display : none;
+    }
+    thead th,tbody td{
+      text-align : center;
+      vertical-align : middle;
+    }
+
   body.is-preload
     #page-wrapper
       header#header
@@ -77,10 +92,11 @@ html
                 tbody
                   for qna in qnas
                     tr  
-                      td= qna.id
+                      td= qnas.indexOf(qna)+1
                       td= qna.q_title
                       td= qna.q_nick
                       td= qna.createdAt
+                      td#for_qid= qna.id
             if user
               input#get_u_nickName(type='text' value= user.u_nickName)
             #qna_information

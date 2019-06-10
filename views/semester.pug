@@ -131,8 +131,7 @@ html
     .gallery    
       for arr in gallery
           .main-img
-            img#image(src=arr.img onclick='imgClick('+arr.id+')')
-
+            img#image(src=arr.img onmouseover='imgClick('+arr.id+')')
       footer#footer
         ul.icons
           li

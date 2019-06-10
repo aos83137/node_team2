@@ -8,6 +8,9 @@ html
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
+    section#question > hr {
+      border: solid 1px;
+    }
     section > h1 {
         font-size: 50px;
         text-align: center;
@@ -26,6 +29,30 @@ html
     #QnA_table > tbody tr:hover{
       cursor: pointer;
     }
+
+    #QnA_title {
+      margin-bottom: 10px;
+    }
+
+    #QnA_content {
+      margin-bottom: 10px;
+    }
+
+    #qna_information{
+      margin-top : 30px;
+      margin-bottom : 30px;
+      text-align : end;
+    }
+    #edit{
+      margin-right : 20px;
+    }
+    textarea#message {
+      color: white;
+    }
+    input#name {
+      color: white;
+    }
+
   body.is-preload
     #page-wrapper
       header#header
@@ -38,7 +65,9 @@ html
             li
               a(href="/semester") Semester
             li
-              a(href="/group_member") Member
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
             if !user
               li
                 a.button.primary(href="/login") Login
@@ -56,32 +85,21 @@ html
               table#QnA_table
                 thead
                   tr
-                    th number
-                    th content
-                    th nick
-                    th time
+                    th No.
+                    th Title
+                    th Nick
+                    th Time
                 tbody
                   for qna in qnas
                     tr  
                       td= qna.id
                       td= qna.q_title
                       td= qna.q_nick
-                      td= qna.createdAt
-
-            table#test-table
-              thead
-                tr
-                  th 아이디
-                  th 제목
-                  th 내용
-                  th 작성자
-                  th 시간
-                  th 수정
-                  th 삭제
-              tbody
-              
+                      td= qna.createdAtz
+            #qna_information
             input#QnA_btn(type="button" value = "질문하기")
           section#question
+            hr
             h3 질문하기
             form( action='/QnA' method='post')
               #QnA_input
@@ -128,6 +146,4 @@ html
     script(src="assets/js/breakpoints.min.js")
     script(src="assets/js/util.js")
     script(src="assets/js/main.js")
-    script(src='/javascripts/group_member.js')
     script(src='/javascripts/QnA.js')
-        

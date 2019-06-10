@@ -82,7 +82,18 @@ html
             li
               a(href="/") Home
             li
-              a.button.primary(href="/login") Login
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Member
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
       #register_wrap_box
         header.major
           h2 Register

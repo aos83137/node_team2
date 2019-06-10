@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
     model:QnA,  
   }).then((qnas)=>{
     res.render('QnA',{
+      title : 'QnA',
+      user:req.user,  
       qnas,
       user: req.user,
     });
@@ -50,7 +52,7 @@ router.post('/', isLoggedIn, async (req,res,next)=>{
 });
 
 router.patch('/:id', (req, res, next) => {
-  QnA.update({q_body:req.body.content}, {where: {id: req.params.id}})
+  QnA.update({q_title:req.body.title, q_body:req.body.content}, {where: {id: req.params.id}})
   .then((result) => {
       res.json(result);
   })
@@ -72,4 +74,18 @@ router.delete('/:id', (req, res, next) => {
   });
 });
 
+router.post('/', isLoggedIn, async (req,res,next)=>{
+  const {title, content} = req.body;
+  try{
+    await QnA.create({
+      q_title: title,
+      q_body:content,
+      q_nick: req.user.u_nickName,
+    });
+    return res.redirect('/QnA');
+  }catch(err){
+    console.error(err);
+    return next(err);
+  }
+})
 module.exports = router;

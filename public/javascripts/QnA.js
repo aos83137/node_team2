@@ -25,6 +25,11 @@ document.querySelectorAll('#QnA_table tr').forEach(function (el) {
 
 // 댓글 로딩
 function getContent(id) {
+    if(control == 1){
+        answer_see_content.remove();
+        answer_dissa.remove();
+        control = 0;
+    }
     fetch('/QnA/' + id, {
             method: 'GET'
         })
@@ -124,7 +129,7 @@ function getContent(id) {
                             answer_infos.map((answer_info) => {
                                 answer_see_content.innerHTML = answer_info.answer;
                             })
-                            control++;
+                            control = 1;
                         })
                         .catch((err) => {
                             console.log(err);
@@ -134,7 +139,7 @@ function getContent(id) {
                         }
                     }
                     answer_dissa.addEventListener('click', () => {
-                        control--;
+                        control = 0;
                         answer_see_content.remove();
                         answer_dissa.remove();
                     });

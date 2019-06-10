@@ -11,4 +11,4 @@ function imgClick(id){
     }).catch((err) => {
         console.log(err);
     });
-}
+}  

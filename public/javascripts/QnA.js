@@ -28,6 +28,7 @@ function getContent(id) {
     if(control == 1){
         answer_see_content.remove();
         answer_dissa.remove();
+
         control = 0;
     }
     fetch('/QnA/' + id, {

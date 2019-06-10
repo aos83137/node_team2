@@ -1,0 +1,169 @@
+doctype html
+html
+  head
+    title Semester
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
+  style.
+      .gallery {
+      margin: auto;
+      max-width: 1080px;
+    }
+
+    .arr {
+      display: inline;
+    }
+
+    .main-img {
+      height: 160px;
+      width: 20%;
+      display: inline-block;
+      /* position: absolute; */
+      /* display: flex;
+      flex-wrap: wrap;
+      flex-direction: row; */
+    }
+    #img_content{
+      border: 1px solid black;
+      width: 30%;
+      height: 20px; 
+      margin: auto;
+    }
+    #img_con{
+      height: 20px;
+      width: 19%;
+    }
+
+    #image {
+      width: 100%;
+      height: 140px;
+    }
+
+    #half1 {
+    margin-top: 50px;
+    }
+    #half2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: solid 2px;
+    border-radius: 30px;
+    }
+    #showNick {
+        margin-right: 20px;
+    }
+    #half3 {
+    margin-bottom: 50px;
+    }
+    .profile {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    }
+    .profile img {
+    border: solid 2px gray;
+    border-radius: 20%;
+    margin: 20px;
+    transition: all ease 0.2s;
+    }
+    .profile img:hover {
+    transform: scale(1.2);
+    border: solid 2px purple;
+    }
+    .major > h2 {
+        font-weight: bold;
+    }
+  body.is-preload
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
+      #main.wrapper.style1
+        .container
+          header.major
+            h2 Local Semester
+            p 일본 현지 학기제에서의 사진 등을 열람하여 정보를 알아가세요           
+          section
+          div#lcl_schedule
+            h2 일정
+            p sibal
+            hr
+          div#wrap_local_semester
+            div#lcl_intro
+              h2 SIBAL
+              p sibal
+              hr
+          div#lcl_schedule
+              h2 SHIT
+              p shit
+              hr
+          form#wrap_gallery(action='/semester/img' method='post' enctype='multipart/form-data')
+              h2 갤러리
+              div 
+                textarea#img_con(name="content", cols="30", rows="10" maxlength = 20)
+                input#img(type='file' name='userfile')
+                input(type='submit')
+      
+    p#img_content
+    .gallery    
+      for arr in gallery
+          .main-img
+            img#image(src=arr.img onmouseover='imgClick('+arr.id+')')
+
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP
+    script(src="assets/js/jquery.min.js")
+    script(src="assets/js/jquery.scrolly.min.js")
+    script(src="assets/js/jquery.dropotron.min.js")
+    script(src="assets/js/jquery.scrollex.min.js")
+    script(src="assets/js/browser.min.js")
+    script(src="assets/js/breakpoints.min.js")
+    script(src="assets/js/util.js")
+    script(src="assets/js/main.js")
+    script(src='/javascripts/semester.js')

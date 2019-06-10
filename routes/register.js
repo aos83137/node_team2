@@ -1,29 +1,44 @@
 var express = require('express');
 var router = express.Router();
-var {User} = require('../models');
+const bcrypt = require('bcrypt');
+const {
+  isLoggedIn,
+  isNotLoggedIn
+} = require('./middlewares');
+var {
+  User
+} = require('../models');
 var alert = require('alert-node');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
+  user: req.user,
   res.render('register');
 });
 
-router.post('/', (req, res, next) => {
-  User.create({
-    u_id: req.body.id,
-    u_passwd: req.body.password,
-    u_nickName: req.body.nick,
-  })
-  .then(result => {
-    console.log(result);
-    res.redirect('/');
-  })
-  .catch((err) => {
-    console.log(err);
+router.post('/', isNotLoggedIn, async (req, res, next) => {
+  const {
+    id,
+    nick,
+    password
+  } = req.body;
+  try {
+    // const exUser = await User.find({ where: { id } });
+    const hash = await bcrypt.hash(password, 12);
+    await User.create({
+      u_id: id,
+      u_passwd: hash,
+      u_nickName: nick,
+    });
+    return res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    //확인 중복 아이디 일경우 만들어야함
     res.redirect('/register');
-    alert('이미 존재하는 ID입니다');  //ID 중복되는 것과 Nick 중복되는 것을 구분 못하겠음. 책 371p의 내용으로 바꾸기. 
-  });
+    alert('이미 존재하는 ID입니다');
+    //확인
+    return next(error);
+  }
 });
-
 
 module.exports = router;

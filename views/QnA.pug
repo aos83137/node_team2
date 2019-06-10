@@ -1,79 +1,154 @@
-extends layout
+doctype html
+html
+  head
+    title QnA
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
+  style.
+    section > h1 {
+        font-size: 50px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #showNick {
+        margin-right: 20px;
+    }
+    #question{
+      display : none;
+    }
+    text:hover{
+      color : red;
+      cursor: pointer;
+    }
+    #QnA_table > tbody tr:hover{
+      cursor: pointer;
+    }
 
-block content
-    .container(style="width: 1080px; margin: 0 auto;")
-        #wrap_QnA(style="width: 800px; margin: 0 auto;  border: 1px solid black;")
-            form#QnA_form(action="")
-                div
-                    input#title(type="text" placeholder="제목")
-                div
-                    input#content(type="text" placeholder=" ")
-                div
-                    button(type="submit") 질문추가
+    #qna_information{
+      margin-top : 30px;
+      margin-bottom : 30px;
+      text-align : end;
+    }
 
-            table#QnAtable
+    #qna_information text{
+      margin-right : 20px;
+    }
+    #get_u_nickName{
+      display: none;
+    }
+    #answer_box{
+      margin-top : 20px;
+    }
+
+    input{
+      margin-top : 10px;
+    }
+
+    #for_qid{
+      display : none;
+    }
+    thead th,tbody td{
+      text-align : center;
+      vertical-align : middle;
+    }
+
+  body.is-preload
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
+      #main.wrapper.style1
+        .container         
+          section
+            h1 Q & A
+            .table-wrapper
+              table#QnA_table
                 thead
-                    tr
-                        th(style="width:30px; text-align:center;") 번호
-                        //- th= qna.id
-                        th(style="width:500px; text-align:center;") 제목
-                        //- th= qna.name
-                        th(style="width:100px; text-align:center;") 글쓴이
-                        th(style="width:70px; text-align:center;") 날짜
+                  tr
+                    th number
+                    th title
+                    th nick
+                    th time
                 tbody
-                    tr
-                        td#Q1num 1
-                        td#Q1title 이것을 누르면 1번 QnA의 내용이 나오는가?
-                        td#Q1writer 사람1
-                        td#Q1date 2019/05/30
-                    tr
-                        td#Q2num 2
-                        td#Q2title 이것을 누르면 2번 QnA의 내용과 수정, 삭제, 답글이 나오는가?
-                        td#Q2writer 사람2
-                        td#Q2date 2019/05/30
-                    tr
-                        td
-                        td(colspan="2") 
-                            span
-                                div 이것은 2번이 클릭되면 표시되도록 해야합니다. &nbsp;또한 2번 제목을 클릭하였을 때 표시되도록 해야합니다.
-                            form(action="")
-                                input(type="button" value="수정") 
-                                input#delete(type="button" value="삭제") 
-                                input(type="button" value="답글") 
-                        td
-            
-    //-table#QnAtable
-        tr
-            td(colspan="3")
-                input(type="button" value="작성")
-        tr 
-            td Q
-            td(style="width: 300px; text-align:center;") 제목
-            td
-                form(action="")
-                    input(type="button" value="수정") 
-                    input(type="button" value="삭제") 
-                    input(type="button" value="답글") 
-    style.
-        .container {
-            width: 1080px; margin: 0 auto;
-        }
+                  for qna in qnas
+                    tr  
+                      td= qnas.indexOf(qna)+1
+                      td= qna.q_title
+                      td= qna.q_nick
+                      td= qna.createdAt
+                      td#for_qid= qna.id
+            if user
+              input#get_u_nickName(type='text' value= user.u_nickName)
+            #qna_information
+            input#QnA_btn(type="button" value = "질문하기")
+          section#question
+            h3 질문하기
+            form( action='/QnA' method='post')
+              #QnA_input
+                #QnA_title
+                  input#name(type="text" name="title" value="" placeholder="제목")
+                #QnA_content
+                  textarea#message(name="content" placeholder="내용을 입력하세요" rows="6")
+                #qna_con_btn
+                  ul.actions
+                    li
+                      input#inputBtn(type="submit" value="저장하기")
+                    li
+                      input#backBtn(type="reset" value="취소")
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP
 
-        #wrap_QnA {
-            width: 800px;
-            margin: 0 auto;
-            border: 1px solid black;
-        }
-
-        #QnA_form input {
-            width: 99%;
-            margin: 0 auto;
-        }
-
-        #QnA_form div > #title { height: 40px;}
-
-        #QnA_form div > #content { height: 120px;}
-
-        th, td {
-            border: 1px solid black;
-        }
+    script(src="assets/js/jquery.min.js")
+    script(src="assets/js/jquery.scrolly.min.js")
+    script(src="assets/js/jquery.dropotron.min.js")
+    script(src="assets/js/jquery.scrollex.min.js")
+    script(src="assets/js/browser.min.js")
+    script(src="assets/js/breakpoints.min.js")
+    script(src="assets/js/util.js")
+    script(src="assets/js/main.js")
+    script(src='/javascripts/QnA.js')

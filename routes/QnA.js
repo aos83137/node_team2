@@ -19,22 +19,6 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/:id', function(req, res, next) {
-  QnA.findAll({
-    where:{
-      id:req.params.id
-    }
-  })
-  .then((qna_infos) => {
-    console.log(qna_infos);
-    res.json(qna_infos);
-  })
-  .catch((err) => {
-    console.error(err);
-    next(err);
-  }); 
-});
-
 router.get('/answer/:id', function(req, res, next) {
   answerQnA.findAll({
     where:{
@@ -49,21 +33,6 @@ router.get('/answer/:id', function(req, res, next) {
     console.error(err);
     next(err);
   }); 
-});
-
-router.post('/', isLoggedIn, async (req,res,next)=>{
-  const {title, content} = req.body;
-  try{
-    await QnA.create({
-      q_title: title,
-      q_body:content,
-      q_nick: req.user.u_nickName,
-    });
-    return res.redirect('/QnA');
-  }catch(err){
-    console.error(err);
-    return next(err);
-  };
 });
 
 router.post('/:id', isLoggedIn, async (req,res,next)=>{
@@ -158,18 +127,4 @@ router.delete('/:id', (req, res, next) => {
   });
 });
 
-router.post('/', isLoggedIn, async (req,res,next)=>{
-  const {title, content} = req.body;
-  try{
-    await QnA.create({
-      q_title: title,
-      q_body:content,
-      q_nick: req.user.u_nickName,
-    });
-    return res.redirect('/QnA');
-  }catch(err){
-    console.error(err);
-    return next(err);
-  }
-})
 module.exports = router;

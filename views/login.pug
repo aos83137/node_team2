@@ -29,13 +29,12 @@ html
     font-weight: bold;
     }
     #login_wrap_box {
-    width: 1080px;
-    margin: auto;
+    margin: 0 auto;
     text-align: center;
     }
     #login_form {
     max-width: 40%;
-    margin: 24px auto;
+    margin: auto;
     }
     #id_box {
     margin-bottom: 30px;
@@ -61,12 +60,20 @@ html
         h1#logo
           a(href="/") Team 2
         nav#nav
-          ul
+           ul
             li
-              a(href="/")
-                h5 HOME
+              a(href="/") Home
             li
-              a.button.primary(href="/register") Register
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
       #main.wrapper.style1
         .container
           header.major
@@ -109,3 +116,10 @@ html
           li
             | Design: 
             a(href="http://html5up.net") HTML5 UP
+    script(src="assets/js/jquery.min.js")
+    script(src="assets/js/jquery.scrolly.min.js")
+    script(src="assets/js/jquery.dropotron.min.js")
+    script(src="assets/js/jquery.scrollex.min.js")
+    script(src="assets/js/browser.min.js")
+    script(src="assets/js/breakpoints.min.js")
+    script(src="assets/js/util.js")

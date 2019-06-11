@@ -8,9 +8,9 @@ html
     noscript
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
-    #showNick {
+    #profileNick {
         margin-right: 20px;
-      }
+    }
     #half1 {
     margin-top: 50px;
     }
@@ -25,9 +25,12 @@ html
     #half3 {
     margin-bottom: 50px;
     }
+    #member_information {
+      text-align: center;
+      padding-top: 30px;
+    }
     .profile {
     text-align: center;
-    padding-top: 20px;
     padding-bottom: 20px;
     }
     .profile img {
@@ -43,7 +46,7 @@ html
     .major > h2 {
         font-weight: bold;
     }
-  body.is-preload.landing
+  body.is-preload
     #page-wrapper
       header#header
         h1#logo
@@ -65,7 +68,7 @@ html
                 a.button.primary(href="/register") Register
             else
               li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary#profileNick(href="#")= "안녕하세요, " + user.u_nickName + "님!"
                 a.button.primary(href='/logout') Logout
       #main.wrapper.style1
         .container

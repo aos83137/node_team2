@@ -17,6 +17,38 @@ html
       .row.gtr-uniform#sibb {
         margin-right: 100px;
       }
+      #botNick {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      #login_wrap_box {
+        margin: 0 auto;
+        text-align: center;
+      }
+      #login_form {
+        max-width: 40%;
+        margin: auto;
+      }
+      #id_box {
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      #passwd_box {
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      #login_form input {
+        width: 100%;
+      }
+      #passwd_box {
+        display: none;
+      }
+      #passwd_box > #sub_button {
+        margin-top: 80px;
+        width: 250px;
+      }
   body.is-preload.landing
     #page-wrapper
       header#header
@@ -105,17 +137,22 @@ html
             li
               a.button(href="/group_member") Members
         a.goto-next.scrolly(href="#four") Next
-      section#four.wrapper.style1.special.fade-up
+      section#five.wrapper.style2.special.fade
         .container
+        if !user
           header.major
-            h2 
-            p 로그인 해서 더 많은 기능을 사용해보세요!
+            h2 로그인 해서 더 많은 기능을 사용해보세요!
+            p Log in and Find more Informations
           .box.alt
-          footer.major
+          ul.actions.special
+              a.button.primary#footerLogin(href="/login") 로그인
+              a.button.primary(href="/register") 계정이 없습니다
+        else
             ul.actions.special
               li
-                a.button#footerLogin(href="/login") 로그인
-                a.button(href="/register") 계정이 없습니다
+                p= "사용자 : " + user.u_nickName
+                a.button.primary(href='/logout') Logout
+                
       footer#footer
         ul.icons
           li
@@ -141,23 +178,6 @@ html
           li
             | Design: 
             a(href="http://html5up.net") HTML5 UP
-    script.
-      function Enter_Check() {
-      if (window.event.keyCode == 13) {
-      login();
-      }
-      }
-      function login(){
-      var check = document.getElementById("email").value;
-      var con = document.getElementById("password");
-      var flag = false;
-      if(check.length !== 0){
-      flag = true;
-      }
-      if(flag){
-      con.style.display = 'block';
-      }
-      }
     script(src="/assets/js/jquery.min.js")
     script(src="/assets/js/jquery.scrolly.min.js")
     script(src="/assets/js/jquery.dropotron.min.js")

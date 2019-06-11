@@ -33,7 +33,8 @@
                     const member_infos = resJson;
                     member_infos.map((member_info) => {
                         // console.log(member_info.explanation);
-                        member_information.innerHTML = member_info.explanation;
+                        console.log('안녕'+member_information);            
+                        member_information.innerText = member_info.explanation;
                     });
                 }).catch((err) => {
                     console.log(err);

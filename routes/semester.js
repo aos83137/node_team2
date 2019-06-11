@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 
-const {Post} = require('../models');
+const {Post, User} = require('../models');
 
 var multer = require('multer');
 var _storage = multer.diskStorage({
@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
    .catch((error)=>{
      console.error(error);
      next(error);
-   })
+   }) 
 });
 
 router.get('/:id', function(req,res,next){
@@ -54,9 +54,19 @@ router.get('/:id', function(req,res,next){
   }); 
 })
 
+router.delete('/:id',(req,res,next)=>{
+  Post.destroy({where : {id: req.params.id}})
+  .then((result) => {
+    console.log(result);
+    res.json(result);
+}).catch((err) => {
+  console.error(err);
+  next(err);
+});
+});
+
 router.post('/img', upload.single('userfile'), function(req,res,next){
   // 'userfile' pug파일에 보면 인풋에 이름이랑 맞춰야함
-  console.log('aaaaaaaaaaaaaaaaaa');
   try{
     Post.create({ // models에 insert 
       img:  `/img/${req.file.filename}`, // 거기에 img 속성에 이값 넣음

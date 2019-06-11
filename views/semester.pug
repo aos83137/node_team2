@@ -9,9 +9,9 @@ html
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
     .gallery {
-        text-align: center;
-        margin: 10px auto;
-        max-width: 1080px;
+        display : flex;
+        flex-wrap:wrap;
+        justify-content: space-around;
     }
 
     .arr {
@@ -31,33 +31,20 @@ html
     }
 
     .main-img {
-      height: 160px;
-      width: 20%;
+      width: 300px;
+      height: 300px;
       display: inline-block;
-      margin: 20px;
+      margin: 15px;
     }
 
-    #img_content{
-      width: 30%;
-      height: 120px;
-      margin-top : 20px;
-      padding: 10px;
-      padding-left: 15px;
-      text-align: start;
-      background: transparent;
-      border-radius: 4px;
-      border: solid 1px rgba(255, 255, 255, 0.3);
-      color: white;
-      font-size: 19px;
-      font-weight : 800px;
-      line-height : 100px;
-      display: block;
-      outline: 0;
-      text-decoration: none;
-      width: 100%;
+    #img_content_box{
+      //-사진 설명 출력
+      margin: 0 auto;
+      width: 60%;
     }
 
-    #img_con{
+    #img_con{ 
+      //-사진 내용입력 input textaria
       width: 100%;
       height: 100px;
     }
@@ -77,9 +64,8 @@ html
     }
     
     img {
-      margin: 5px;
-      width: 250px;
-      height: 200px;
+      width: 100%;
+      height:100%;
       transition: all ease 0.2s;
       border-radius: 10%;
       border: inherit;
@@ -106,8 +92,8 @@ html
     #edit1 {
       margin-right: 10px;
     }
-    
-  body.is-preload.landing
+   
+  body.is-preload
     #page-wrapper
       header#header
         h1#logo
@@ -162,8 +148,7 @@ html
           for arr in gallery
               .main-img
                 img#image(src=arr.img onclick='imgClick('+arr.id+')')
-          p#img_content 사진을 클릭하면 설명이 나옵니다.
-
+        #img_content_box
       footer#footer
           ul.icons
             li

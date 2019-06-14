@@ -25,12 +25,6 @@ html
       }
       }
   style.
-   .error-message { 
-     color: red; 
-     font-weight: bold;
-     margin : 0;
-     padding: 0;
-    } 
     #register_wrap_box {
     text-align: center;
     width: 100%;
@@ -84,7 +78,7 @@ html
         h1#logo
           a(href="/") Team 2
         nav#nav
-          ul
+           ul
             li
               a(href="/") Home
             li
@@ -98,29 +92,23 @@ html
                 a.button.primary(href="/login") Login
               li
                 a.button.primary(href="/register") Register
-            else
-              li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
-                a.button.primary(href='/logout') Logout
       #register_wrap_box
         header.major
           h2 Register
         form#register_form(action='/register' method='post')
           #register_id
             h3  아이디 
-            input#enter_id(type="id" name="u_id" required autofocus placeholder="아이디")
+            input#enter_id(type="id" name="id" required autofocus placeholder="아이디")
           #register_password
             h3  비밀번호 
-            input#enter_password(type="password" name="password" required onchange="comparePassword(this)" placeholder="비밀번호")
+            input#enter_password(type="password" name="password" required onchange="comparePassword(this)" placeholder="비밀번호 8자리 이상")
           #register_password_confirm
             h3  비밀번호 확인 
             input#enter_password_confirm(type="password" name="password_confirm" required onchange="comparePassword(this)")
             label#sameornot 비밀번호를 입력해주세요
           #register_nick
             h3  닉네임 
-            input#enter_nick(type="nick" name="u_nickName" required)
-          if loginError
-              .error-message= loginError
+            input#enter_nick(type="nick" name="nick" required)
           #submission
             input#sub_button(type="submit" value="가입하기")
       footer#footer
@@ -155,3 +143,4 @@ html
     script(src="assets/js/browser.min.js")
     script(src="assets/js/breakpoints.min.js")
     script(src="assets/js/util.js")
+    script(src="assets/js/main.js")

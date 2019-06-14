@@ -2,7 +2,10 @@ exports.isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
     } else {
-      res.status(403).send('로그인 필요');
+      res.status(err.status || 403);
+      res.render('error',{
+        message: '로그인 세션 만료'
+      })
     }
   };
   

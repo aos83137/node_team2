@@ -1,0 +1,201 @@
+doctype html
+html
+  head
+    title Node Team 2
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="/assets/css/main.css")
+    noscript
+      link(rel="stylesheet" href="/assets/css/noscript.css")
+    style.
+      header.major {
+        font-weight: bold;
+      }
+      body {
+        font-weight: bold;
+      }
+      p#footerHi {
+        font-weight: bold;
+        font-size: 40px;
+        color: white;
+        margin-bottom: 60px;
+      }
+      #showNick {
+        margin-right: 20px;
+      }
+      #five {
+        height: 450px;
+      }
+      #footerLogin {
+        text-align: center;
+        margin-right: 40px;
+      }
+      #botNick {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      #login_wrap_box {
+        margin: 0 auto;
+        text-align: center;
+      }
+      #login_form {
+        max-width: 40%;
+        margin: auto;
+      }
+      #id_box {
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      #passwd_box {
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      #login_form input {
+        width: 100%;
+      }
+      #passwd_box {
+        display: none;
+      }
+      #passwd_box > #sub_button {
+        margin-top: 80px;
+        width: 250px;
+      }
+      #nav {
+        font-weight: bold;
+      }
+  body.is-preload.landing
+    #page-wrapper
+      header#header
+        h1#logo
+          a(href="/") Team 2
+        nav#nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/semester") Semester
+            li
+              a(href="/group_member") Members
+            li
+              a(href="/QnA") Q & A
+            if !user
+              li
+                a.button.primary(href="/login") Login
+              li
+                a.button.primary(href="/register") Register
+            else
+              li
+                a#showNick.button.primary= "안녕하세요, " + user.u_nickName + "님!"
+                a.button.primary(href='/logout') Logout
+      section#banner
+        .content
+          header
+            h2 일본 현지 학기제
+            p 6주간, 일본 현지에서의 생활
+          span.image
+            img(src="/images/japan1.jpg" alt="")
+        a.goto-next.scrolly(href="#one") Next
+      section#one.spotlight.style1.bottom
+        span.image.fit.main
+          img(src="/images/japan1.jpg" alt="")
+        .content
+          .container
+            .row
+              .col-4.col-12-medium
+                header
+                  h2 일본의 정보
+                  p Semester 페이지에서 사진을 열람하여 정보를 알아가세요
+                  a.button(href="/semester") Semester
+              .col-4.col-12-medium
+                p
+                  | 2010년 부터 시작하여 계속 시행하고 있으며 
+                  | 2019년부터 WD 일본반과 CP 일본반이 함께 <br>
+                  | 참가하고 일본 기업 견학, 일본 문화 체험 및 <br>
+                  | 현지에서의 생활, 일본어 향상 등을 통해 학생들의 <br>
+                  | 일본취업에 대한 꿈을 더 키울 수 있도록  <br>
+                  | 도와주는 일본 현지 학기제에 대한 소개입니다.
+              .col-4.col-12-medium
+                p
+                  | 6주간 실시하는 현지 학기제를 통해 <br>
+                  | 일본 후쿠오카에서 생활하고 구경하며, <br>
+                  | 체험할 활동들에 대해 사진과 함께 살펴봅시다.
+        a.goto-next.scrolly(href="#two") Next
+      section#two.spotlight.style2.right
+        span.image.fit.main
+          img(src="/images/japan2.jpg" alt="")
+        .content
+          header
+            h2 질문게시판
+            p Q & A 페이지에서 궁금한 점을 질문하시거나 피드백을 해주세요
+          p
+            | <br>로그인 하여 질문하기 버튼을 누른 후 <br>
+            | 질문을 완료하면 저희가 답변을 해드립니다
+          ul.actions
+            li
+              a.button(href="/QnA") Q & A
+        a.goto-next.scrolly(href="#three") Next
+      section#three.spotlight.style3.left
+        span.image.fit.main.bottom
+          img(src="/images/japan3.jpg" alt="")
+        .content
+          header
+            h2 웹사이트 개발자들
+            p <br><br>밑의 링크 Members 페이지에서 개발자 정보를 확인하세요
+          p
+            | 개발자들의 사진 및 정보입니다
+          ul.actions
+            li
+              a.button(href="/group_member") Members
+      section#five.wrapper.style2.special.fade
+        .container#foots
+        if !user
+          header.major
+            h2 로그인 해서 더 많은 기능을 사용해보세요!
+            p Log in and Find more Informations
+            .box.alt
+            ul.actions.special
+              a.button.primary#footerLogin(href="/login") 로그인
+              a.button.primary(href="/register") 계정이 없습니다
+        else
+          ul.actions.special
+            li
+              p#footerHi 환영합니다!
+              a.button.primary= "User :"+ " " + user.u_nickName
+              p
+              a.button.primary(href='/logout') Logout
+                
+      footer#footer
+        ul.icons
+          li
+            a.icon.alt.fa-twitter(href="#")
+              span.label Twitter
+          li
+            a.icon.alt.fa-facebook(href="#")
+              span.label Facebook
+          li
+            a.icon.alt.fa-linkedin(href="#")
+              span.label LinkedIn
+          li
+            a.icon.alt.fa-instagram(href="#")
+              span.label Instagram
+          li
+            a.icon.alt.fa-github(href="#")
+              span.label GitHub
+          li
+            a.icon.alt.fa-envelope(href="#")
+              span.label Email
+        ul.copyright
+          li Copyright@Team2
+          li
+            | Design: 
+            a(href="http://html5up.net") HTML5 UP
+    script(src="/assets/js/jquery.min.js")
+    script(src="/assets/js/jquery.scrolly.min.js")
+    script(src="/assets/js/jquery.dropotron.min.js")
+    script(src="/assets/js/jquery.scrollex.min.js")
+    script(src="/assets/js/browser.min.js")
+    script(src="/assets/js/breakpoints.min.js")
+    script(src="/assets/js/util.js")
+    script(src="/assets/js/main.js")

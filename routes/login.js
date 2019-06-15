@@ -5,13 +5,15 @@ const {
   isNotLoggedIn,
   isLoggedIn
 } = require('./middlewares');
+// const { User } = require('../models');
 
 const router = express.Router();
 
 
 /* GET home page. */
-router.get('/', isNotLoggedIn,function (req, res, next) {
-  res.render('login',{
+router.get('/', isNotLoggedIn, (req, res, next) => {
+  res.render('login', {
+    user: req.user,
     loginError: req.flash('loginError'),
   });
 });
@@ -38,4 +40,3 @@ router.post('/', isNotLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
-

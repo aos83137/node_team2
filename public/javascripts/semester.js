@@ -5,6 +5,7 @@ function imgClick(id) {
                 return response.json();
             }
         }).then((resJson) => {
+            var identify_user = document.getElementById('identify_user');
             var img_content_box = document.querySelector('#img_content_box');
             img_content_box.innerHTML = ''
             const lcl_infos = resJson;
@@ -39,9 +40,14 @@ function imgClick(id) {
                 remove.remove();
                 cnt = 0;
             });
+
             img_content_box.append(photo_info);
-            img_content_box.append(del);
             img_content_box.append(remove);
+
+            if(identify_user.value == '관리자'){
+                img_content_box.append(del);
+            }
+
         }).catch((err) => {
             console.log(err);
         });

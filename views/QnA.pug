@@ -19,12 +19,19 @@ html
     #showNick {
         margin-right: 20px;
     }
+    #nav {
+      font-weight: bold;
+    }
     #question{
       display : none;
     }
+    text {
+      margin-top: 50px;
+    }
     text:hover{
-      color : red;
+      color : violet;
       cursor: pointer;
+      font-weight: bold;
     }
     #QnA_table > tbody tr:hover{
       cursor: pointer;
@@ -38,9 +45,11 @@ html
       margin-bottom: 10px;
     }
 
+    input {
+      margin-bottom: 10px;
+    }
+
     #qna_information{
-      margin-top : 30px;
-      margin-bottom : 30px;
       text-align : end;
     }
     #qna_information text{
@@ -65,6 +74,11 @@ html
       vertical-align : middle;
     }
 
+    #QnA_btn {
+      margin-bottom: 20px;
+    }
+    
+
   body.is-preload
     #page-wrapper
       header#header
@@ -87,7 +101,7 @@ html
                 a.button.primary(href="/register") Register
             else
               li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a#showNick.button.primary= "안녕하세요, " + user.u_nickName + "님!"
                 a.button.primary(href='/logout') Logout
       #main.wrapper.style1
         .container         
@@ -97,10 +111,10 @@ html
               table#QnA_table
                 thead
                   tr
-                    th number
-                    th title
-                    th nick
-                    th time
+                    th Number
+                    th Title
+                    th Nick
+                    th Time
                 tbody
                   for qna in qnas
                     tr  
@@ -113,20 +127,23 @@ html
               input#get_u_nickName(type='text' value= user.u_nickName)
             #qna_information
             input#QnA_btn(type="button" value = "질문하기")
-          section#question
-            h3 질문하기
-            form( action='/QnA' method='post')
-              #QnA_input
-                #QnA_title
-                  input#name(type="text" name="title" value="" placeholder="제목")
-                #QnA_content
-                  textarea#message(name="content" placeholder="내용을 입력하세요" rows="6")
-                #qna_con_btn
-                  ul.actions
-                    li
-                      input#inputBtn(type="submit" value="저장하기")
-                    li
-                      input#backBtn(type="reset" value="취소")
+          if !user
+            h5 로그인이 필요한 서비스입니다
+          else
+            section#question
+              h3 질문하기  
+              form( action='/QnA' method='post')
+                #QnA_input
+                  #QnA_title
+                    input#name(type="text" name="title" value="" placeholder="제목")
+                  #QnA_content
+                    textarea#message(name="content" placeholder="내용을 입력하세요" rows="6")
+                  #qna_con_btn
+                    ul.actions
+                      li
+                        input#inputBtn(type="submit" value="저장하기")
+                      li
+                        input#backBtn(type="reset" value="취소")
       footer#footer
         ul.icons
           li

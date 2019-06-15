@@ -11,31 +11,50 @@ var {
 var alert = require('alert-node');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('register');
+router.get('/', (req, res, next) => {
+  // user: req.user,
+  res.render('register', {
+    user: req.user,
+    loginError: req.flash('loginError'),
+  });
 });
 
 router.post('/', isNotLoggedIn, async (req, res, next) => {
   const {
-    id,
-    nick,
-    password
+    password,
+    u_id,
+    u_nickName,
   } = req.body;
   try {
-    // const exUser = await User.find({ where: { id } });
+    const exUser = await User.find({
+      where: {
+        u_id
+      }
+    });
+    const exNick = await User.find({
+      where: {
+        u_nickName
+      }
+    });
+
+
+    if (exUser) {
+      req.flash('loginError', '이미 존재하는 아이디 입니다');
+      return res.redirect('/register');
+    } else if (exNick) {
+      req.flash('loginError', '이미 존재하는 닉네임 입니다');
+      return res.redirect('/register')
+    }
     const hash = await bcrypt.hash(password, 12);
     await User.create({
-      u_id: id,
+      u_id,
       u_passwd: hash,
-      u_nickName: nick,
+      u_nickName,
     });
+
     return res.redirect('/');
   } catch (error) {
-    console.error(error);
-    //확인 중복 아이디 일경우 만들어야함
     res.redirect('/register');
-    alert('이미 존재하는 ID입니다');
-    //확인
     return next(error);
   }
 });

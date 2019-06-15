@@ -1,19 +1,19 @@
 module.exports = (sequelize, DataTypes) => (
-    sequelize.define('qna',{
-        q_title:{
+    sequelize.define('qna', {
+        q_title: {
             type: DataTypes.STRING(100),
-            allowNull:true,
+            allowNull: true,
         },
-        q_body:{
+        q_body: {
             type: DataTypes.STRING(1000),
-            allowNull : true,
+            allowNull: true,
         },
-        q_nick:{
+        q_nick: {
             type: DataTypes.STRING(20),
-            allowNull : true,
+            allowNull: true,
         },
-    },{
-        timestamps:true,
-        paranoid:true,
+    }, {
+        timestamps: true,
+        paranoid: true,
     })
 );

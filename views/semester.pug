@@ -9,10 +9,10 @@ html
       link(rel="stylesheet" href="/assets/css/noscript.css")
   style.
     .gallery {
-      margin:
         display : flex;
         flex-wrap:wrap;
-        justify-content: space-around;
+        justify-content: center;
+        margin-bottom: 50px;
     }
 
     .arr {
@@ -24,9 +24,7 @@ html
     }
 
     input#submitting {
-      width: 10%;
-      padding : 0px;
-      margin-left: 2%;
+      margin-left: 10px;
     }
 
     footer {
@@ -34,7 +32,7 @@ html
     }
 
     .main-img {
-      width: 300px;
+      width: 370px;
       height: 300px;
       display: inline-block;
       margin: 15px;
@@ -42,12 +40,14 @@ html
 
     #img_content_box{
       margin: 0 auto;
-      width: 90%;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      width: 60%;
     }
 
     #img_con{ 
       width: 100%;
-      height: 100px;
+      height: 150px;
     }
 
     #showNick {
@@ -73,7 +73,7 @@ html
     }
 
     img:hover {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
 
     hr {
@@ -94,8 +94,39 @@ html
       margin-right: 10px;
     }
     #img_infile{
-      width: 88%;
-      margin-top: 5px;
+      display : none;
+    }
+    #img_label {
+      border: solid 1px gray;
+      border-radius: 4px;
+      width : 100px;
+      height : 52px;
+      line-height : 50px;
+      text-align : center;
+      margin-top: 10px;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    #img_label:hover {
+      cursor: pointer;
+      -moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      -webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      -ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      border-bottom: dotted 1px;
+      color: #e44c65;
+      text-decoration: none;
+    }
+    .inputImg {
+      text-align: start;
+    }
+
+    #identify_user{
+      display: none;
+    }
+    #nav {
+      font-weight: bold;
     }
   body.is-preload
     #page-wrapper
@@ -119,7 +150,7 @@ html
                 a.button.primary(href="/register") Register
             else
               li
-                a#showNick= "안녕하세요, " + user.u_nickName + "님!"
+                a#showNick.button.primary= "안녕하세요, " + user.u_nickName + "님!"
                 a.button.primary(href='/logout') Logout
       #main.wrapper.style1
         .container
@@ -140,13 +171,15 @@ html
               p 일본현지에서 일본어교육과 일본문화 탐방, 일본기업 견학 실시
               hr
           if user  && user.u_nickName =='관리자'
+            input#identify_user(type='text' value= user.u_nickName)
             form#wrap_gallery(action='/semester/img' method='post' enctype='multipart/form-data')
-                h2 Gallery
-                div
-                .inputImg
-                  textarea#img_con(name="content", cols="30", rows="10" maxlength = 100 placeholder="사진 내용을 입력해주세요.")
-                  input#img_infile(type='file' name='userfile' value="asda")
-                  input#submitting(type='submit')
+              h2 Gallery
+              div
+              .inputImg
+                textarea#img_con(name="content", cols="30", rows="10" maxlength = 100 placeholder="사진의 내용을 입력해주세요")
+                label#img_label 사진 선택
+                  input#img_infile(type='file' name='userfile')
+                input#submitting(type='submit')
                 hr
         .gallery    
           for arr in gallery

@@ -1,16 +1,14 @@
 module.exports = (sequelize, DataTypes) => (
     sequelize.define('answerqna', {
-        ques_id:{
+        ques_id: {
             type: DataTypes.CHAR(10),
-            allowNull : false,
+            allowNull: false,
         },
-        answer:{
+        answer: {
             type: DataTypes.STRING(200),
-            allowNull : false,
+            allowNull: false,
         },
-    }, 
-    {
-      timestamps: true,
+    }, {
+        timestamps: true,
     })
-  );
-  
+);
